@@ -55,15 +55,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // ignore: unused_field
+  bool _isSignUpComplete = false;
+  // ignore: unused_field
+  bool _isSignedIn = false;
+  // ignore: unused_field
+  bool _passwordVisible = false;
+  // ignore: unused_field
   int _counter = 0;
-
-  bool isSignUpComplete = false;
-  bool isSignedIn = false;
 
   @override
   initState() {
     super.initState();
     _configureAmplify();
+    _isSignUpComplete = false;
+    _passwordVisible = false;
+    _passwordVisible = false;
+    _counter = 0;
   }
 
   void _incrementCounter() {
@@ -74,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
+      _passwordVisible = true;
     });
   }
 
@@ -108,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
         options: CognitoSignUpOptions(userAttributes: userAttributes),
       );
       setState(() {
-        isSignUpComplete = result.isSignUpComplete;
+        _isSignUpComplete = result.isSignUpComplete;
       });
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -121,7 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
           username: 'myusername', confirmationCode: '123456');
 
       setState(() {
-        isSignUpComplete = result.isSignUpComplete;
+        _isSignUpComplete = result.isSignUpComplete;
       });
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -156,6 +165,9 @@ class _MyHomePageState extends State<MyHomePage> {
   // customize the rest of your Widget below as you wish...
   @override
   Widget build(BuildContext context) {
+    // Temp
+    isUserSignedIn().then((value) => _isSignedIn = value);
+    //
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -190,12 +202,60 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              'Word Sleuth Login',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter Username',
+                    labelText: 'Username'),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Enter Password',
+                    labelText: 'Password'),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+            MaterialButton(
+              minWidth: double.tryParse('350'),
+              height: 50,
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+              onPressed: () {},
+              color: Colors.deepPurple,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+              ),
+              child: const Text(
+                "Login",
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
             Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              'Logged In? $_isSignedIn',
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ],
         ),
