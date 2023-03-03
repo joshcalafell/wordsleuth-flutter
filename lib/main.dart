@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Auth Flow Demo',
+      title: 'Flutter Custom Auth Flow',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -141,6 +141,16 @@ class _MyHomePageState extends State<MyHomePage> {
     } on AuthException catch (e) {
       safePrint(e.message);
     }
+  }
+
+  Future<bool> isUserSignedIn() async {
+    final result = await Amplify.Auth.fetchAuthSession();
+    return result.isSignedIn;
+  }
+
+  Future<AuthUser> getCurrentUser() async {
+    final user = await Amplify.Auth.getCurrentUser();
+    return user;
   }
 
   // customize the rest of your Widget below as you wish...
