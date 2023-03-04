@@ -16,7 +16,7 @@
       "function": {
         "wordsleuth5da081185da08118DefineAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-59376863713475516235-build.zip"
+          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-526b5166434a4a556148-build.zip"
         },
         "wordsleuth1e407bba1e407bbaCreateAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
