@@ -57,12 +57,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // ignore: unused_field
   bool _isSignUpComplete = false;
+  // ignore: unused_field
+  final bool _isSignedIn = false;
 
-  bool _isSignedIn = false;
-
-  bool _showPass = false;
-
+  // Temp
+  bool _isLoggedIn = false;
   bool _passwordVisible = false;
+
+  final _loginForm = {};
 
   @override
   initState() {
@@ -72,12 +74,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _togglePasswordVisible() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _passwordVisible = !_passwordVisible;
+    });
+  }
+
+  void _toggleLoggedIn() {
+    setState(() {
+      _isLoggedIn = !_isLoggedIn;
+    });
+  }
+
+  void _updateLoginForm(typedata, text) {
+    setState(() {
+      //i can assign any different variable with this code
+      _loginForm[typedata] = text;
+      //output of LoginForm: {username: foo, password: bar}
     });
   }
 
@@ -161,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // Temp
-    isUserSignedIn().then((value) => _isSignedIn = value);
+
     //
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
@@ -199,16 +210,20 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Login',
+              _isLoggedIn ? 'Logged In' : 'Logged Out',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: TextField(
-                decoration: InputDecoration(
+                onChanged: (text) {
+                  _updateLoginForm("username", text);
+                  safePrint('Username: $_loginForm["username"]');
+                },
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Enter Username',
                     labelText: 'Username'),
@@ -217,6 +232,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: TextField(
+                onChanged: (text) {
+                  _updateLoginForm("password", text);
+                  safePrint('Password: $_loginForm["password"]');
+                },
                 obscureText: _passwordVisible,
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -231,15 +250,15 @@ class _MyHomePageState extends State<MyHomePage> {
               minWidth: double.tryParse('350'),
               height: 50,
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              onPressed: () {},
+              onPressed: _toggleLoggedIn,
               color: Colors.deepPurple,
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),
-              child: const Text(
-                "Login",
-                style: TextStyle(
+              child: Text(
+                _isLoggedIn ? 'Logout' : 'Login',
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                   color: Colors.white,
