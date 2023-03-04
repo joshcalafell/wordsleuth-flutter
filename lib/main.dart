@@ -57,32 +57,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // ignore: unused_field
   bool _isSignUpComplete = false;
-  // ignore: unused_field
+
   bool _isSignedIn = false;
-  // ignore: unused_field
+
+  bool _showPass = false;
+
   bool _passwordVisible = false;
-  // ignore: unused_field
-  int _counter = 0;
 
   @override
   initState() {
     super.initState();
     _configureAmplify();
-    _isSignUpComplete = false;
-    _passwordVisible = false;
-    _passwordVisible = false;
-    _counter = 0;
   }
 
-  void _incrementCounter() {
+  void _togglePasswordVisible() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter++;
-      _passwordVisible = true;
+      _passwordVisible = !_passwordVisible;
     });
   }
 
@@ -171,6 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
+
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
@@ -218,11 +214,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     labelText: 'Username'),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
+                obscureText: _passwordVisible,
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Enter Password',
                     labelText: 'Password'),
@@ -261,10 +257,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: _togglePasswordVisible,
+        tooltip: 'Toggle Visibility',
         backgroundColor: Colors.deepPurple,
-        child: const Icon(Icons.add),
+        child: _passwordVisible
+            ? const Icon(Icons.visibility)
+            : const Icon(Icons.visibility_off),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
