@@ -1,0 +1,17 @@
+{
+  "trigger": true,
+  "modules": [
+    "boilerplate-verify"
+  ],
+  "parentResource": "wordsleuth1e407bba1e407bba",
+  "functionName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse",
+  "resourceName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/snapshot/repo/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/VerifyAuthChallengeResponse",
+  "triggerTemplate": "VerifyAuthChallengeResponse.json.ejs",
+  "triggerEventPath": "VerifyAuthChallengeResponse.event.json",
+  "roleName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse",
+  "skipEdit": true,
+  "enableCors": false
+}

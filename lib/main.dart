@@ -203,8 +203,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Word Sleuth Login',
-              style: Theme.of(context).textTheme.headlineMedium,
+              'Login',
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

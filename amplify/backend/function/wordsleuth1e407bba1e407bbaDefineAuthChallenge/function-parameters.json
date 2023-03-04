@@ -1,0 +1,15 @@
+{
+  "trigger": true,
+  "modules": ["boilerplate-define-challenge"],
+  "parentResource": "wordsleuth1e407bba1e407bba",
+  "functionName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge",
+  "resourceName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge",
+  "parentStack": "auth",
+  "triggerEnvs": [],
+  "triggerDir": "/snapshot/repo/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/DefineAuthChallenge",
+  "triggerTemplate": "DefineAuthChallenge.json.ejs",
+  "triggerEventPath": "DefineAuthChallenge.event.json",
+  "roleName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge",
+  "skipEdit": true,
+  "enableCors": false
+}

@@ -1,8 +1,36 @@
 {
   "auth": {
-    "wordsleuth25b5c021": {
-      "customAuth": false,
-      "dependsOn": [],
+    "wordsleuth1e407bba1e407bba": {
+      "customAuth": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaCreateAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge",
+          "triggerProvider": "Cognito"
+        },
+        {
+          "attributes": [
+            "Arn",
+            "Name"
+          ],
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse",
+          "triggerProvider": "Cognito"
+        }
+      ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -23,6 +51,94 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "wordsleuth1e407bba1e407bbaCreateAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "wordsleuth1e407bba1e407bbaDefineAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "wordsleuth5da081185da08118DefineAuthChallenge": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_wordsleuth1e407bba1e407bbaCreateAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaCreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth1e407bba1e407bbaCreateAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaCreateAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth1e407bba1e407bbaDefineAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth1e407bba1e407bbaDefineAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth5da081185da08118DefineAuthChallenge_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth5da081185da08118DefineAuthChallenge"
+        }
+      ]
+    },
+    "AMPLIFY_function_wordsleuth5da081185da08118DefineAuthChallenge_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "wordsleuth5da081185da08118DefineAuthChallenge"
+        }
+      ]
     }
   }
 }

@@ -9,11 +9,30 @@
       "UnauthRoleName": "amplify-wordsleuth-dev-74626-unauthRole",
       "StackName": "amplify-wordsleuth-dev-74626",
       "StackId": "arn:aws:cloudformation:us-west-2:663465269140:stack/amplify-wordsleuth-dev-74626/656f77e0-b911-11ed-aed8-026c1db524ef",
-      "AmplifyAppId": "d2mar0opwzj97g"
+      "AmplifyAppId": "d2mar0opwzj97g",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-wordsleuth-dev-74626-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
     },
     "categories": {
+      "function": {
+        "wordsleuth5da081185da08118DefineAuthChallenge": {
+          "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
+          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-59376863713475516235-build.zip"
+        },
+        "wordsleuth1e407bba1e407bbaCreateAuthChallenge": {
+          "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaCreateAuthChallenge-71333159394f68717a31-build.zip"
+        },
+        "wordsleuth1e407bba1e407bbaDefineAuthChallenge": {
+          "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-46775468757350535751-build.zip"
+        },
+        "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse": {
+          "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse-493149325856416c5a58-build.zip"
+        }
+      },
       "auth": {
-        "wordsleuth25b5c021": {}
+        "wordsleuth1e407bba1e407bba": {}
       }
     }
   }
