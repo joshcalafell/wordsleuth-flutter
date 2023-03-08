@@ -1,7 +1,7 @@
 /**
  * @type {import('@types/aws-lambda').DefineAuthChallengeTriggerHandler}
  */
-exports.handler = async (event) => {
+export async function handler(event) {
   if (
     event.request.session.length === 1 &&
     event.request.session[0].challengeName === "SRP_A"
@@ -30,4 +30,4 @@ exports.handler = async (event) => {
   }
 
   return event;
-};
+}

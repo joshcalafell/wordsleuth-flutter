@@ -9,6 +9,6 @@ function verifyAuthChallengeResponse(event) {
   }
 }
 
-exports.handler = async (event) => {
+export async function handler(event) {
   verifyAuthChallengeResponse(event);
-};
+}

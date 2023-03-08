@@ -1,4 +1,4 @@
-exports.handler = async function (event) {
+export async function handler(event) {
   if (
     event.request.session.length == 1 &&
     event.request.session[0].challengeName == "SRP_A"
@@ -18,4 +18,4 @@ exports.handler = async function (event) {
     event.response.issueTokens = false;
     event.response.failAuthentication = true;
   }
-};
+}
