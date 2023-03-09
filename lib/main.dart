@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-      home: const MyHomePage(title: 'Flutter Custom Auth Flow'),
+      home: const MyHomePage(title: 'Word Sleuth'),
     );
   }
 }
@@ -154,7 +154,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Sign in to your account',
               style: const TextStyle(
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w600,
                 fontSize: 16,
                 color: Colors.black,
               ),
