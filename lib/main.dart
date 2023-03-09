@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool _isLoggedIn = false;
   bool _passwordVisible = false;
 
-  final _loginForm = {};
+  final _signInForm = {};
 
   @override
   initState() {
@@ -61,9 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _updateLoginForm(typedata, text) {
+  void _updateSignInForm(typedata, text) {
     setState(() {
-      _loginForm[typedata] = text;
+      _signInForm[typedata] = text;
     });
   }
 
@@ -144,19 +144,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              _isLoggedIn ? 'Logged In' : 'Logged Out',
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
+            const Image(
+                image: AssetImage('graphics/rfs-logo_150x150_dark.png')),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: TextField(
                 onChanged: (text) {
-                  _updateLoginForm("username", text);
-                  safePrint('Username: $_loginForm["username"]');
+                  _updateSignInForm("username", text);
+                  safePrint('Username: $_signInForm["username"]');
                 },
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -168,8 +166,8 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: TextField(
                 onChanged: (text) {
-                  _updateLoginForm("password", text);
-                  safePrint('Password: $_loginForm["password"]');
+                  _updateSignInForm("password", text);
+                  safePrint('Password: $_signInForm["password"]');
                 },
                 obscureText: _passwordVisible,
                 decoration: const InputDecoration(
@@ -192,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: Text(
-                _isLoggedIn ? 'Logout' : 'Login',
+                _isLoggedIn ? 'Sign Out' : 'Sign In',
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
