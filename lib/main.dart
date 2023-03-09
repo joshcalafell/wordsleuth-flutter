@@ -162,9 +162,9 @@ class _MyHomePageState extends State<MyHomePage> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
-            Image(
-              image: AssetImage('assets/graphics/rfs-logo_150x150_dark.png'),
-            ),
+            /*        Image(
+              image: AssetImage('assets/graphics/rfs-logo.png'),
+            ), */
           ],
         ),
         Column(mainAxisAlignment: MainAxisAlignment.center, children: [
