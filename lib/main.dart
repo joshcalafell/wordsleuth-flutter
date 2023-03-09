@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
@@ -141,73 +143,89 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Image(
-                image: AssetImage('graphics/rfs-logo_150x150_dark.png')),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: TextField(
-                onChanged: (text) {
-                  _updateSignInForm("username", text);
-                  safePrint('Username: $_signInForm["username"]');
-                },
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter Username',
-                    labelText: 'Username'),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: TextField(
-                onChanged: (text) {
-                  _updateSignInForm("password", text);
-                  safePrint('Password: $_signInForm["password"]');
-                },
-                obscureText: _passwordVisible,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: 'Enter Password',
-                    labelText: 'Password'),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            ),
-            MaterialButton(
-              minWidth: double.tryParse('350'),
-              height: 50,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-              onPressed: _toggleLoggedIn,
-              color: Colors.deepPurple,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              child: Text(
-                _isLoggedIn ? 'Sign Out' : 'Sign In',
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+          // ignore: prefer_const_literals_to_create_immutables
+          children: [
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             ),
             Text(
-              'Forgot Password?',
-              style: Theme.of(context).textTheme.bodyLarge,
+              'Sign in to your account',
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                color: Colors.black,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+            Image(
+              image: AssetImage('graphics/rfs-logo_150x150_dark.png'),
             ),
           ],
         ),
-      ),
+        Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: TextField(
+              onChanged: (text) {
+                _updateSignInForm("username", text);
+                safePrint('Username: $_signInForm["username"]');
+              },
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter Username',
+                  labelText: 'Username'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: TextField(
+              onChanged: (text) {
+                _updateSignInForm("password", text);
+                safePrint('Password: $_signInForm["password"]');
+              },
+              obscureText: _passwordVisible,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter Password',
+                  labelText: 'Password'),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          ),
+          MaterialButton(
+            minWidth: double.tryParse('340'),
+            height: 50,
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            onPressed: _toggleLoggedIn,
+            color: Colors.deepPurple,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: Text(
+              _isLoggedIn ? 'Sign Out' : 'Sign In',
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 18,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          ),
+          Text(
+            'Forgot Password?',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ]),
+      ])),
       floatingActionButton: FloatingActionButton(
         onPressed: _togglePasswordVisible,
         tooltip: 'Toggle Visibility',
