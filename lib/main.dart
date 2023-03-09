@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             ),
             Image(
-              image: AssetImage('graphics/rfs-logo_150x150_dark.png'),
+              image: AssetImage('assets/graphics/rfs-logo_150x150_dark.png'),
             ),
           ],
         ),
