@@ -45,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _signInForm = {};
 
+  String _username = 'N/A';
+
   @override
   initState() {
     super.initState();
@@ -67,6 +69,10 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _signInForm[typedata] = text;
     });
+  }
+
+  void updateUser(AuthUser user) {
+    _username = user.username;
   }
 
   Future<void> _configureAmplify() async {
@@ -224,6 +230,13 @@ class _MyHomePageState extends State<MyHomePage> {
             'Forgot Password?',
             style: Theme.of(context).textTheme.bodyLarge,
           ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          ),
+          /*  Text(
+            'Username: $_username',
+            style: Theme.of(context).textTheme.bodySmall,
+          ), */
         ]),
       ])),
       floatingActionButton: FloatingActionButton(
