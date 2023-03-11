@@ -45,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _signInForm = {};
 
+  // ignore: unused_field
   String _username = 'N/A';
 
   @override
