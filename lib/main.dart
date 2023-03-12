@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
@@ -41,9 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   final _signInForm = {};
 
-  // ignore: unused_field
-  String _username = 'N/A';
-
   @override
   initState() {
     super.initState();
@@ -66,10 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _signInForm[typedata] = text;
     });
-  }
-
-  void updateUser(AuthUser user) {
-    _username = user.username;
   }
 
   Future<void> _configureAmplify() async {
@@ -317,15 +309,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                 horizontal: 20, vertical: 20),
                             child: TextField(
                               onChanged: (text) {
-                                _updateSignInForm("verifyPassword", text);
+                                _updateSignInForm("confirmedPassword", text);
                                 safePrint(
-                                    'Verfied Password: $_signInForm["verifyPassword"]');
+                                    'Confirmed Password: $_signInForm["confirmedPassword"]');
                               },
                               obscureText: _passwordVisible,
                               decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Verify Password',
-                                  labelText: 'Verify Password'),
+                                  hintText: 'Confirm Password',
+                                  labelText: 'Confirm Password'),
                             ),
                           ),
                           const Padding(
@@ -344,7 +336,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: Text(
-                              'Sign up',
+                              'Create Account',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,
