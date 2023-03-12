@@ -181,9 +181,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                         ),
-                        /*        Image(
-              image: AssetImage('assets/graphics/rfs-logo.png'),
-            ), */
                       ],
                     ),
                     Column(
@@ -254,10 +251,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 20),
                           ),
-                          /*  Text(
-            'Username: $_username',
-            style: Theme.of(context).textTheme.bodySmall,
-          ), */
                         ]),
                   ],
                 ),
@@ -283,9 +276,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                         ),
-                        /*        Image(
-              image: AssetImage('assets/graphics/rfs-logo.png'),
-            ), */
                       ],
                     ),
                     Column(
@@ -370,10 +360,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 20),
                           ),
-                          /*  Text(
-            'Username: $_username',
-            style: Theme.of(context).textTheme.bodySmall,
-          ), */
                         ]),
                   ],
                 ),
