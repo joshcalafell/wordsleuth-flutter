@@ -16,19 +16,19 @@
       "function": {
         "wordsleuth5da081185da08118DefineAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-526b5166434a4a556148-build.zip"
+          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-41716c7757734e494259-build.zip"
         },
         "wordsleuth1e407bba1e407bbaCreateAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaCreateAuthChallenge-71333159394f68717a31-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaCreateAuthChallenge-492f4e7253664a425532-build.zip"
         },
         "wordsleuth1e407bba1e407bbaDefineAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-46775468757350535751-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-67474f672b7a41375035-build.zip"
         },
         "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse-493149325856416c5a58-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse-57667069643031713171-build.zip"
         }
       },
       "auth": {
