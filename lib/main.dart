@@ -2,9 +2,9 @@
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'amplifyconfiguration.dart';
-import 'login.dart';
-import 'create_account.dart';
+import 'config/amplifyconfiguration.dart';
+import 'login/login.dart';
+import 'login/create_account.dart';
 
 void main() {
   runApp(const MyApp());
