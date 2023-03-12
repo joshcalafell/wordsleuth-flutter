@@ -64,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _questionTrigger() {
+  void _triggerQuestion() {
     // ...
   }
 
@@ -377,9 +377,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
-                onPressed: _questionTrigger,
-                tooltip: 'Toggle Visibility',
-                backgroundColor: Colors.deepPurple,
+                onPressed: _triggerQuestion,
+                tooltip: 'Questions',
+                backgroundColor: Color.fromARGB(255, 36, 36, 36),
                 child: Icon(Icons.question_answer)),
           )),
     );
