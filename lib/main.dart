@@ -272,7 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               horizontal: 20, vertical: 20),
                         ),
                         Text(
-                          'Sign in to your account',
+                          'Sign up for an account',
                           style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 16,
@@ -296,13 +296,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 horizontal: 20, vertical: 20),
                             child: TextField(
                               onChanged: (text) {
-                                _updateSignInForm("username", text);
-                                safePrint('Username: $_signInForm["username"]');
+                                _updateSignInForm("chooseUsername", text);
+                                safePrint(
+                                    'Chosen Username: $_signInForm["chooseUsername"]');
                               },
                               decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Enter Username',
-                                  labelText: 'Username'),
+                                  hintText: 'Choose Username',
+                                  labelText: 'Choose Username'),
                             ),
                           ),
                           Padding(
@@ -310,14 +311,31 @@ class _MyHomePageState extends State<MyHomePage> {
                                 horizontal: 20, vertical: 20),
                             child: TextField(
                               onChanged: (text) {
-                                _updateSignInForm("password", text);
-                                safePrint('Password: $_signInForm["password"]');
+                                _updateSignInForm("choosePassword", text);
+                                safePrint(
+                                    'Chosen Password: $_signInForm["choosePassword"]');
                               },
                               obscureText: _passwordVisible,
                               decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Enter Password',
-                                  labelText: 'Password'),
+                                  hintText: 'Choose Password',
+                                  labelText: 'Choose Password'),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 20),
+                            child: TextField(
+                              onChanged: (text) {
+                                _updateSignInForm("verifyPassword", text);
+                                safePrint(
+                                    'Verfied Password: $_signInForm["verifyPassword"]');
+                              },
+                              obscureText: _passwordVisible,
+                              decoration: const InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Verify Password',
+                                  labelText: 'Verify Password'),
                             ),
                           ),
                           const Padding(
@@ -336,7 +354,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               borderRadius: BorderRadius.circular(5.0),
                             ),
                             child: Text(
-                              _isLoggedIn ? 'Sign Out' : 'Sign In',
+                              'Sign up',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,
@@ -347,10 +365,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           const Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 20),
-                          ),
-                          Text(
-                            'Forgot Password?',
-                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(
