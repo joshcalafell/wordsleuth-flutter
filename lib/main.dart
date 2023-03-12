@@ -201,8 +201,20 @@ class _MyHomePageState extends State<MyHomePage> {
                                 safePrint('Password: $_signInForm["password"]');
                               },
                               obscureText: _passwordVisible,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   border: OutlineInputBorder(),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(_passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          _passwordVisible = !_passwordVisible;
+                                        },
+                                      );
+                                    },
+                                  ),
                                   hintText: 'Enter Password',
                                   labelText: 'Password'),
                             ),
@@ -282,10 +294,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                 safePrint(
                                     'Chosen Username: $_signInForm["chooseUsername"]');
                               },
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Choose Username',
-                                  labelText: 'Choose Username'),
+                                  hintText: 'Enter Userame',
+                                  labelText: 'Username'),
                             ),
                           ),
                           Padding(
@@ -298,10 +310,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                     'Chosen Password: $_signInForm["choosePassword"]');
                               },
                               obscureText: _passwordVisible,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   border: OutlineInputBorder(),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(_passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          _passwordVisible = !_passwordVisible;
+                                        },
+                                      );
+                                    },
+                                  ),
                                   hintText: 'Choose Password',
-                                  labelText: 'Choose Password'),
+                                  labelText: 'Password'),
                             ),
                           ),
                           Padding(
@@ -314,10 +338,22 @@ class _MyHomePageState extends State<MyHomePage> {
                                     'Confirmed Password: $_signInForm["confirmedPassword"]');
                               },
                               obscureText: _passwordVisible,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   border: OutlineInputBorder(),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(_passwordVisible
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(
+                                        () {
+                                          _passwordVisible = !_passwordVisible;
+                                        },
+                                      );
+                                    },
+                                  ),
                                   hintText: 'Confirm Password',
-                                  labelText: 'Confirm Password'),
+                                  labelText: 'Password'),
                             ),
                           ),
                           const Padding(
@@ -358,13 +394,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
-              onPressed: _togglePasswordVisible,
-              tooltip: 'Toggle Visibility',
-              backgroundColor: Colors.deepPurple,
-              child: _passwordVisible
-                  ? const Icon(Icons.visibility)
-                  : const Icon(Icons.visibility_off),
-            ),
+                onPressed: _togglePasswordVisible,
+                tooltip: 'Toggle Visibility',
+                backgroundColor: Colors.deepPurple,
+                child: Icon(Icons.question_answer)),
           )),
     );
   }
