@@ -192,7 +192,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                               decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Enter Username',
+                                  hintText: 'Username',
                                   labelText: 'Username'),
                             ),
                           ),
@@ -212,7 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ? Icons.visibility
                                           : Icons.visibility_off),
                                       onPressed: _togglePasswordVisible),
-                                  hintText: 'Enter Password',
+                                  hintText: 'Password',
                                   labelText: 'Password'),
                             ),
                           ),
@@ -293,7 +293,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               },
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Enter Userame',
+                                  hintText: 'Userame',
                                   labelText: 'Username'),
                             ),
                           ),
@@ -314,8 +314,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ? Icons.visibility
                                           : Icons.visibility_off),
                                       onPressed: _togglePasswordVisible),
-                                  hintText: 'Choose Password',
-                                  labelText: 'Password'),
+                                  hintText: 'New Password',
+                                  labelText: 'New Password'),
                             ),
                           ),
                           Padding(
@@ -335,8 +335,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ? Icons.visibility
                                           : Icons.visibility_off),
                                       onPressed: _togglePasswordVisible),
-                                  hintText: 'Confirm Password',
-                                  labelText: 'Password'),
+                                  hintText: 'Password',
+                                  labelText: 'Verify Password'),
                             ),
                           ),
                           const Padding(
