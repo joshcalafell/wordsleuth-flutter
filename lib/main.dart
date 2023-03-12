@@ -37,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
   // Temp
   bool _isLoggedIn = false;
   bool _passwordVisible = false;
+  bool _passwordVerifyVisible = false;
+  bool _passwordNewVisible = false;
 
   final _signInForm = {};
 
@@ -49,6 +51,18 @@ class _MyHomePageState extends State<MyHomePage> {
   void _togglePasswordVisible() {
     setState(() {
       _passwordVisible = !_passwordVisible;
+    });
+  }
+
+  void _toggleNewPasswordVisible() {
+    setState(() {
+      _passwordNewVisible = !_passwordNewVisible;
+    });
+  }
+
+  void _togglePasswordVerifyVisible() {
+    setState(() {
+      _passwordVerifyVisible = !_passwordVerifyVisible;
     });
   }
 
@@ -235,7 +249,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               _isLoggedIn ? 'Sign Out' : 'Sign In',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Colors.white,
                               ),
                             ),
@@ -306,14 +320,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 safePrint(
                                     'Chosen Password: $_signInForm["choosePassword"]');
                               },
-                              obscureText: _passwordVisible,
+                              obscureText: _passwordNewVisible,
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   suffixIcon: IconButton(
-                                      icon: Icon(_passwordVisible
+                                      icon: Icon(_passwordNewVisible
                                           ? Icons.visibility
                                           : Icons.visibility_off),
-                                      onPressed: _togglePasswordVisible),
+                                      onPressed: _toggleNewPasswordVisible),
                                   hintText: 'New Password',
                                   labelText: 'New Password'),
                             ),
@@ -327,14 +341,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                 safePrint(
                                     'Confirmed Password: $_signInForm["confirmedPassword"]');
                               },
-                              obscureText: _passwordVisible,
+                              obscureText: _passwordVerifyVisible,
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   suffixIcon: IconButton(
-                                      icon: Icon(_passwordVisible
+                                      icon: Icon(_passwordVerifyVisible
                                           ? Icons.visibility
                                           : Icons.visibility_off),
-                                      onPressed: _togglePasswordVisible),
+                                      onPressed: _togglePasswordVerifyVisible),
                                   hintText: 'Password',
                                   labelText: 'Verify Password'),
                             ),
@@ -358,7 +372,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               'Create Account',
                               style: const TextStyle(
                                 fontWeight: FontWeight.w600,
-                                fontSize: 18,
+                                fontSize: 16,
                                 color: Colors.white,
                               ),
                             ),
@@ -379,7 +393,7 @@ class _MyHomePageState extends State<MyHomePage> {
             floatingActionButton: FloatingActionButton(
                 onPressed: _triggerQuestion,
                 tooltip: 'Questions',
-                backgroundColor: Color.fromARGB(255, 36, 36, 36),
+                backgroundColor: Colors.deepPurple,
                 child: Icon(Icons.question_answer)),
           )),
     );
