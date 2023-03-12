@@ -64,6 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _questionTrigger() {
+    // ...
+  }
+
   Future<void> _configureAmplify() async {
     final authPlugin = AmplifyAuthCognito();
     await Amplify.addPlugin(authPlugin);
@@ -204,17 +208,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   suffixIcon: IconButton(
-                                    icon: Icon(_passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off),
-                                    onPressed: () {
-                                      setState(
-                                        () {
-                                          _passwordVisible = !_passwordVisible;
-                                        },
-                                      );
-                                    },
-                                  ),
+                                      icon: Icon(_passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: _togglePasswordVisible),
                                   hintText: 'Enter Password',
                                   labelText: 'Password'),
                             ),
@@ -313,17 +310,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   suffixIcon: IconButton(
-                                    icon: Icon(_passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off),
-                                    onPressed: () {
-                                      setState(
-                                        () {
-                                          _passwordVisible = !_passwordVisible;
-                                        },
-                                      );
-                                    },
-                                  ),
+                                      icon: Icon(_passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: _togglePasswordVisible),
                                   hintText: 'Choose Password',
                                   labelText: 'Password'),
                             ),
@@ -341,17 +331,10 @@ class _MyHomePageState extends State<MyHomePage> {
                               decoration: InputDecoration(
                                   border: OutlineInputBorder(),
                                   suffixIcon: IconButton(
-                                    icon: Icon(_passwordVisible
-                                        ? Icons.visibility
-                                        : Icons.visibility_off),
-                                    onPressed: () {
-                                      setState(
-                                        () {
-                                          _passwordVisible = !_passwordVisible;
-                                        },
-                                      );
-                                    },
-                                  ),
+                                      icon: Icon(_passwordVisible
+                                          ? Icons.visibility
+                                          : Icons.visibility_off),
+                                      onPressed: _togglePasswordVisible),
                                   hintText: 'Confirm Password',
                                   labelText: 'Password'),
                             ),
@@ -394,7 +377,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
-                onPressed: _togglePasswordVisible,
+                onPressed: _questionTrigger,
                 tooltip: 'Toggle Visibility',
                 backgroundColor: Colors.deepPurple,
                 child: Icon(Icons.question_answer)),
