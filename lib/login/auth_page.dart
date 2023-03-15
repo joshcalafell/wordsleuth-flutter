@@ -21,18 +21,20 @@ class _AuthPageState extends State<AuthPage> {
   initState() {
     super.initState();
     _configureAmplify();
+    _checkAuthStatus();
   }
 
   Future<void> _configureAmplify() async {
     final authPlugin = AmplifyAuthCognito();
     await Amplify.addPlugin(authPlugin);
+    _checkAuthStatus();
 
     try {
       await Amplify.configure(amplifyconfig);
     } on AmplifyAlreadyConfiguredException {
       safePrint(
           "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
-    }
+    } finally {}
   }
 
   Future<bool> isUserSignedIn() async {
@@ -43,6 +45,11 @@ class _AuthPageState extends State<AuthPage> {
   Future<AuthUser> getCurrentUser() async {
     final user = await Amplify.Auth.getCurrentUser();
     return user;
+  }
+
+  _checkAuthStatus() {
+    getCurrentUser().then((value) =>
+        {safePrint(value as bool ? value.username : '[NoUserLoggedIn]')});
   }
 
   @override
