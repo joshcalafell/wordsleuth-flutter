@@ -169,11 +169,14 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                                   : Icons.visibility_off),
                               // The validator receives the text that the user has entered.
                             )))),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                ),
                 MaterialButton(
                   minWidth: double.tryParse('340'),
                   height: 50,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+                      const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_createAccountFormKey.currentState!.validate()) {

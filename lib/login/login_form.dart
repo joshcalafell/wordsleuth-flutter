@@ -57,7 +57,7 @@ class _LoginFormState extends State<LoginForm> {
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
               const Text(
                 'Sign in to your account',
@@ -72,7 +72,10 @@ class _LoginFormState extends State<LoginForm> {
               ),
               Center(
                   child: Image.asset(
-                      'assets/graphics/wordsleuth_350x350_dark.png'))
+                      'assets/graphics/wordsleuth_350x350_dark.png')),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
             ],
           ),
           Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -94,7 +97,7 @@ class _LoginFormState extends State<LoginForm> {
                         labelText: 'Username'))),
             Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -107,8 +110,8 @@ class _LoginFormState extends State<LoginForm> {
                     obscureText: _passwordVisible,
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(),
-                        hintText: 'Confirm Password',
-                        labelText: 'Confirm Password',
+                        hintText: 'Password',
+                        labelText: 'Password',
                         suffixIcon: IconButton(
                           onPressed: _togglePasswordVisible,
                           icon: Icon(_passwordVisible
@@ -122,7 +125,7 @@ class _LoginFormState extends State<LoginForm> {
             MaterialButton(
               minWidth: double.tryParse('340'),
               height: 50,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
                 if (_loginFormKey.currentState!.validate()) {
