@@ -94,6 +94,8 @@ class _LoginPageState extends State<LoginPage> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           ),
+          Center(
+              child: Image.asset('assets/graphics/wordsleuth_350x350_dark.png'))
         ],
       ),
       Column(mainAxisAlignment: MainAxisAlignment.center, children: [

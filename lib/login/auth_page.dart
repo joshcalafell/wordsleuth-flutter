@@ -49,18 +49,27 @@ class _AuthPageState extends State<AuthPage> {
   _checkAuthStatus() async {
     var x = await isUserSignedIn();
     safePrint(x);
+    return x;
+  }
+
+  bool signedIn = false;
+
+  _toggleSignedIn() {
+    setState(() {
+      signedIn = !signedIn;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     // Test
-    _checkAuthStatus();
+
     // ...
     String signInText = 'Sign In';
     String signUpText = 'Create Account';
     String fabQuestionsTooltipText = 'Questions';
 
-    return _checkAuthStatus() == true
+    return signedIn == false
         ? MaterialApp(
             theme: ThemeData(
               primarySwatch: Colors.deepPurple,
@@ -85,7 +94,7 @@ class _AuthPageState extends State<AuthPage> {
                     ],
                   ),
                   floatingActionButton: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: _toggleSignedIn,
                       tooltip: fabQuestionsTooltipText,
                       backgroundColor: Colors.deepPurple,
                       child: Icon(Icons.question_answer)),
@@ -94,7 +103,8 @@ class _AuthPageState extends State<AuthPage> {
         : MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-                primarySwatch: Colors.blue, platform: TargetPlatform.iOS),
+              primarySwatch: Colors.deepPurple,
+            ),
             home: PicListPage(),
             title: 'Title goes here...',
           );
@@ -131,6 +141,11 @@ class PicListPage extends StatelessWidget {
           );
         },
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          tooltip: 'Sign Out',
+          backgroundColor: Colors.deepPurple,
+          child: Icon(Icons.question_answer)),
     );
   }
 }
