@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import '/config/amplifyconfiguration.dart';
-import 'create_account.dart';
-import 'login.dart';
+import '/login/create_account.dart';
+import '/login/login.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key, required this.title});
@@ -32,8 +32,6 @@ class _AuthPageState extends State<AuthPage> {
     } on AmplifyAlreadyConfiguredException {
       safePrint(
           "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
-    } finally {
-      // _checkAuthStatus();
     }
   }
 
@@ -48,13 +46,20 @@ class _AuthPageState extends State<AuthPage> {
   }
 
   // ignore: unused_element
-  _checkAuthStatus() {
-    getCurrentUser().then((value) =>
-        {safePrint(value as bool ? value.username : '[NoUserLoggedIn]')});
+  _checkAuthStatus() async {
+    var x = await isUserSignedIn();
+    safePrint(x);
   }
 
   @override
   Widget build(BuildContext context) {
+    // Test
+    _checkAuthStatus();
+    // ...
+    String signInText = 'Sign In';
+    String signUpText = 'Create Account';
+
+    safePrint(' ~~~ Fin ~~~');
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
@@ -64,10 +69,10 @@ class _AuthPageState extends State<AuthPage> {
           child: Scaffold(
             appBar: AppBar(
               title: Text(widget.title),
-              bottom: const TabBar(
+              bottom: TabBar(
                 tabs: [
-                  Tab(icon: Text('Sign In')),
-                  Tab(icon: Text('Create Account')),
+                  Tab(icon: Text(signInText)),
+                  Tab(icon: Text(signUpText)),
                 ],
               ),
             ),
@@ -75,7 +80,7 @@ class _AuthPageState extends State<AuthPage> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 LoginPage(title: 'Sign In'),
-                CreateAccountPage(title: 'Create Account')
+                CreateAccountPage(title: 'Create Account'),
               ],
             ),
             floatingActionButton: FloatingActionButton(
