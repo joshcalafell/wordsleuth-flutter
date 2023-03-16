@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import '/config/amplifyconfiguration.dart';
-import '/login/create_account.dart';
-import '/login/login.dart';
+import '/login/create_acount_form.dart';
+import '/login/login_form.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({super.key, required this.title});
+class AuthTabsContaner extends StatefulWidget {
+  const AuthTabsContaner({super.key, required this.title});
 
   // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  State<AuthTabsContaner> createState() => _AuthTabsContanerState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthTabsContanerState extends State<AuthTabsContaner> {
   @override
   initState() {
     super.initState();
@@ -54,12 +54,6 @@ class _AuthPageState extends State<AuthPage> {
 
   bool signedIn = false;
 
-  _toggleSignedIn() {
-    setState(() {
-      signedIn = !signedIn;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // Test
@@ -67,7 +61,6 @@ class _AuthPageState extends State<AuthPage> {
     // ...
     String signInText = 'Sign In';
     String signUpText = 'Create Account';
-    String fabQuestionsTooltipText = 'Questions';
 
     return signedIn == false
         ? MaterialApp(
@@ -89,15 +82,10 @@ class _AuthPageState extends State<AuthPage> {
                   body: TabBarView(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      LoginPage(title: signInText),
-                      CreateAccountPage(title: signUpText),
+                      LoginForm(title: signInText),
+                      CreateAccountForm(title: signUpText),
                     ],
                   ),
-                  floatingActionButton: FloatingActionButton(
-                      onPressed: _toggleSignedIn,
-                      tooltip: fabQuestionsTooltipText,
-                      backgroundColor: Colors.deepPurple,
-                      child: Icon(Icons.question_answer)),
                 )),
           )
         : MaterialApp(
