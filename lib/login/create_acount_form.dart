@@ -19,7 +19,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
   bool _passwordVerifyVisible = false;
   bool _passwordNewVisible = false;
 
-  final _createAccountFormKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   initState() {
@@ -62,7 +62,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _createAccountFormKey,
+      key: _formKey,
       child: Column(
         children: <Widget>[
           Column(
@@ -133,14 +133,14 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                           }
                           return null;
                         },
-                        obscureText: !_passwordNewVisible,
+                        obscureText: _passwordNewVisible,
                         decoration: InputDecoration(
                             border: const OutlineInputBorder(),
                             hintText: 'New Password',
                             labelText: 'New Password',
                             suffixIcon: IconButton(
                               onPressed: _toggleNewPasswordVisible,
-                              icon: Icon(_passwordVerifyVisible
+                              icon: Icon(_passwordNewVisible
                                   ? Icons.visibility
                                   : Icons.visibility_off),
                               // The validator receives the text that the user has entered.
@@ -179,7 +179,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
-                    if (_createAccountFormKey.currentState!.validate()) {
+                    if (_formKey.currentState!.validate()) {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       ScaffoldMessenger.of(context).showSnackBar(

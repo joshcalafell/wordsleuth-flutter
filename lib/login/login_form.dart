@@ -20,7 +20,7 @@ class _LoginFormState extends State<LoginForm> {
 
   bool _passwordVisible = false;
 
-  final _loginFormKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   initState() {
@@ -50,7 +50,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-        key: _loginFormKey,
+        key: _formKey,
         child: Column(children: <Widget>[
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
-                if (_loginFormKey.currentState!.validate()) {
+                if (_formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context).showSnackBar(

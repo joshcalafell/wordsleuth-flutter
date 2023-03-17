@@ -19,7 +19,7 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
   bool _passwordVerifyVisible = false;
   bool _passwordNewVisible = false;
 
-  final _verifiationChallengeFormKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   initState() {
@@ -54,7 +54,7 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
   Widget build(BuildContext context) {
     return !_isSignUpComplete
         ? Form(
-            key: _verifiationChallengeFormKey,
+            key: _formKey,
             child: Column(
               children: <Widget>[
                 Column(
@@ -179,8 +179,7 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
                                 horizontal: 40, vertical: 10),
                             onPressed: () {
                               // Validate returns true if the form is valid, or false otherwise.
-                              if (_verifiationChallengeFormKey.currentState!
-                                  .validate()) {
+                              if (_formKey.currentState!.validate()) {
                                 // If the form is valid, display a snackbar. In the real world,
                                 // you'd often call a server or save the information in a database.
                                 ScaffoldMessenger.of(context).showSnackBar(
