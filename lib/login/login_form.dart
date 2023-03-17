@@ -59,6 +59,12 @@ class _LoginFormState extends State<LoginForm> {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
+              Center(
+                  child: Image.asset(
+                      'assets/graphics/wordsleuth_350x350_dark.png')),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
               const Text(
                 'Sign in to your account',
                 style: TextStyle(
@@ -67,12 +73,6 @@ class _LoginFormState extends State<LoginForm> {
                   color: Colors.black,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              ),
-              Center(
-                  child: Image.asset(
-                      'assets/graphics/wordsleuth_350x350_dark.png')),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
