@@ -1,15 +1,14 @@
 //crypto-secure-random-digit is used here to get random challenge code - https://github.com/ottokruse/crypto-secure-random-digit
-import { randomDigits } from "crypto-secure-random-digit";
+const digitGenerator = require("crypto-secure-random-digit");
 
 function sendChallengeCode(emailAddress, secretCode) {
   // Use SES or custom logic to send the secret code to the user.
-  console.log(emailAddress, secretCode);
 }
 
 function createAuthChallenge(event) {
   if (event.request.challengeName === "CUSTOM_CHALLENGE") {
     // Generate a random code for the custom challenge
-    const challengeCode = randomDigits(6).join("");
+    const challengeCode = "123456"; // digitGenerator.randomDigits(6).join("");
 
     // Send the custom challenge to the user
     sendChallengeCode(event.request.userAttributes.email, challengeCode);
@@ -17,11 +16,11 @@ function createAuthChallenge(event) {
     event.response.privateChallengeParameters = {};
     event.response.privateChallengeParameters.answer = challengeCode;
     event.response.publicChallengeParameters = {
-      hint: "Enter the secret code",
+      hint: "Enter the secret code (123456)",
     };
   }
 }
 
-export async function handler(event) {
+exports.handler = async (event) => {
   createAuthChallenge(event);
-}
+};

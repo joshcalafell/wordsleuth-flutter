@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+// Do not forget to import the following for StreamSubscription
+import 'dart:async';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key, required this.title});
@@ -13,7 +15,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  // ignore: unused_field
   final bool _isSignedIn = false;
 
   // Temp
@@ -46,6 +47,27 @@ class _LoginFormState extends State<LoginForm> {
       safePrint(e.message);
     }
   }
+
+  StreamSubscription<HubEvent> hubSubscription =
+      Amplify.Hub.listen([HubChannel.Auth], (hubEvent) {
+    switch (hubEvent.eventName) {
+      case 'SIGNED_IN':
+        safePrint('USER IS SIGNED IN');
+        break;
+      case 'SIGNED_OUT':
+        safePrint('USER IS SIGNED OUT');
+        break;
+      case 'SESSION_EXPIRED':
+        safePrint('SESSION HAS EXPIRED');
+        break;
+      case 'USER_DELETED':
+        safePrint('USER HAS BEEN DELETED');
+        break;
+      default:
+        safePrint(hubEvent.eventName);
+        break;
+    }
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -131,6 +153,7 @@ class _LoginFormState extends State<LoginForm> {
                 if (_formKey.currentState!.validate()) {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
+                  signInUser('rabbitfighter', 'j9B73301');
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );

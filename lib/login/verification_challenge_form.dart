@@ -52,7 +52,7 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
 
   @override
   Widget build(BuildContext context) {
-    return !_isSignUpComplete
+    return _isSignUpComplete == true
         ? Form(
             key: _formKey,
             child: Column(
@@ -186,6 +186,8 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
                                   const SnackBar(
                                       content: Text('Processing Data')),
                                 );
+
+                                confirmUser('jcalafell23@gmail.com', '123456');
                               }
                             },
                             color: Colors.deepPurple,

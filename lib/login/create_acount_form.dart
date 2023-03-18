@@ -316,6 +316,12 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                                   const SnackBar(
                                       content: Text('Processing Data')),
                                 );
+
+                                signUpUser(
+                                    'jcalafell23@gmail.com',
+                                    'rabbitfighter',
+                                    '+15098668223',
+                                    'j9B73301');
                               }
                             },
                             color: Colors.deepPurple,
