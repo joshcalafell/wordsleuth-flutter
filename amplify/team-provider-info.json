@@ -1,6 +1,7 @@
 {
   "dev": {
     "awscloudformation": {
+      "SourceArn": "COGNITO_DEFAULT",
       "AuthRoleName": "amplify-wordsleuth-dev-74626-authRole",
       "UnauthRoleArn": "arn:aws:iam::663465269140:role/amplify-wordsleuth-dev-74626-unauthRole",
       "AuthRoleArn": "arn:aws:iam::663465269140:role/amplify-wordsleuth-dev-74626-authRole",
@@ -20,15 +21,15 @@
         },
         "wordsleuth1e407bba1e407bbaCreateAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaCreateAuthChallenge-492f4e7253664a425532-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaCreateAuthChallenge-5a675055465a6c31654c-build.zip"
         },
         "wordsleuth1e407bba1e407bbaDefineAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-67474f672b7a41375035-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-454b635178456662626a-build.zip"
         },
         "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse-57667069643031713171-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse-493149325856416c5a58-build.zip"
         }
       },
       "auth": {
