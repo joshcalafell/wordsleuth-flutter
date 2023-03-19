@@ -1,31 +1,23 @@
 {
   "auth": {
     "wordsleuth1e407bba1e407bba": {
+      "SourceArn": "COGNITO_DEFAULT",
       "customAuth": true,
       "dependsOn": [
         {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
+          "attributes": ["Arn", "Name"],
           "category": "function",
           "resourceName": "wordsleuth1e407bba1e407bbaCreateAuthChallenge",
           "triggerProvider": "Cognito"
         },
         {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
+          "attributes": ["Arn", "Name"],
           "category": "function",
           "resourceName": "wordsleuth1e407bba1e407bbaDefineAuthChallenge",
           "triggerProvider": "Cognito"
         },
         {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
+          "attributes": ["Arn", "Name"],
           "category": "function",
           "resourceName": "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse",
           "triggerProvider": "Cognito"
@@ -33,21 +25,16 @@
       ],
       "frontendAuthConfig": {
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
+        "mfaTypes": ["SMS"],
         "passwordProtectionSettings": {
           "passwordPolicyCharacters": [],
           "passwordPolicyMinLength": 8
         },
-        "signupAttributes": [
-          "EMAIL"
-        ],
+        "signupAttributes": ["EMAIL"],
+        "SourceArn": "COGNITO_DEFAULT",
         "socialProviders": [],
         "usernameAttributes": [],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
+        "verificationMechanisms": ["EMAIL"]
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
