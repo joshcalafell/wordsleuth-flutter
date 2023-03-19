@@ -1,7 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
   auth: {
     wordsleuth1e407bba1e407bba: {
-      SourceArn: "string";
       AppClientID: "string";
       AppClientIDWeb: "string";
       IdentityPoolId: "string";
