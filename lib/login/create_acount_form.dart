@@ -53,8 +53,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
       );
       setState(() {
         _isSignUpComplete = result.isSignUpComplete;
-        safePrint(result.isSignUpComplete);
       });
+      safePrint(result.isSignUpComplete);
       safePrint(result);
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -67,8 +67,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
           username: username, confirmationCode: confirmationCode);
       setState(() {
         _isSignUpComplete = result.isSignUpComplete;
-        safePrint(result.isSignUpComplete);
       });
+      safePrint(result.isSignUpComplete);
       safePrint(result);
     } on AuthException catch (e) {
       safePrint(e.message);
