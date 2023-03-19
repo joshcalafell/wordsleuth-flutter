@@ -20,7 +20,6 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
   bool _passwordNewVisible = false;
 
   final _formKey = GlobalKey<FormState>();
-  final _formKeyVerify = GlobalKey<FormState>();
 
   @override
   initState() {
@@ -54,8 +53,9 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
       );
       setState(() {
         _isSignUpComplete = result.isSignUpComplete;
-        safePrint(result);
+        safePrint(result.isSignUpComplete);
       });
+      safePrint(result);
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -67,7 +67,9 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
           username: username, confirmationCode: confirmationCode);
       setState(() {
         _isSignUpComplete = result.isSignUpComplete;
+        safePrint(result.isSignUpComplete);
       });
+      safePrint(result);
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -75,9 +77,9 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
 
   @override
   Widget build(BuildContext context) {
-    return _isSignUpComplete
+    return _isSignUpComplete == true
         ? Form(
-            key: _formKeyVerify,
+            key: _formKey,
             child: Column(
               children: <Widget>[
                 Column(
@@ -232,7 +234,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
             ),
           )
         : Form(
-            key: _formKeyVerify,
+            key: _formKey,
             child: Column(
               children: <Widget>[
                 Column(
@@ -309,7 +311,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                                 horizontal: 40, vertical: 10),
                             onPressed: () {
                               // Validate returns true if the form is valid, or false otherwise.
-                              if (_formKeyVerify.currentState!.validate()) {
+                              if (_formKey.currentState!.validate()) {
                                 // If the form is valid, display a snackbar. In the real world,
                                 // you'd often call a server or save the information in a database.
                                 ScaffoldMessenger.of(context).showSnackBar(
@@ -318,10 +320,10 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                                 );
 
                                 signUpUser(
-                                    'jcalafell23@gmail.com',
-                                    'rabbitfighter',
+                                    'jcalafell23+10@gmail.com',
+                                    'rabbitfighter81',
                                     '+15098668223',
-                                    'j9B73301');
+                                    'j9B73301!');
                               }
                             },
                             color: Colors.deepPurple,
