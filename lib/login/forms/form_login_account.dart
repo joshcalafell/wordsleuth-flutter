@@ -41,7 +41,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
         options: CognitoSignInOptions(
             authFlowType: AuthenticationFlowType.customAuth),
       );
-      safePrint(result);
+      safePrint(result.isSignedIn);
       setState(() {
         _isSignedIn = result.isSignedIn;
       });
@@ -99,7 +99,9 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return _isSignedIn != true
+    hubSubscription.asFuture(_isSignedIn);
+
+    return !_isSignedIn
         ? Form(
             key: _formKey,
             child: Column(children: <Widget>[

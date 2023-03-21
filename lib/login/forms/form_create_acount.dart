@@ -77,7 +77,7 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return _isSignUpComplete == true
+    return !_isSignUpComplete
         ? Form(
             key: _formKey,
             child: Column(
