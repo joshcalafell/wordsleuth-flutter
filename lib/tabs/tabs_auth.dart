@@ -4,8 +4,8 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 
 import '/config/amplifyconfiguration.dart';
-import '../forms/form_create_acount.dart';
-import '../forms/form_login_account.dart';
+import '../login/forms/form_create_acount.dart';
+import '../login/forms/form_login_account.dart';
 
 class TabsAuth extends StatefulWidget {
   const TabsAuth({super.key, required this.title});

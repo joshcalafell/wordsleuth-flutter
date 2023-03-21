@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import '/pages/page_pics_list.dart';
 
 class FormLoginAccount extends StatefulWidget {
   const FormLoginAccount({super.key, required this.title});
@@ -138,7 +140,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please verify your email';
+                            return 'Please enter your email';
                           } else {
                             safePrint('Value $value');
                           }
@@ -146,15 +148,15 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                         },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: 'Username',
-                            labelText: 'Username'))),
+                            hintText: 'Email',
+                            labelText: 'Email'))),
                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please verify your password';
+                            return 'Please enter your password';
                           } else {
                             safePrint('Value $value');
                           }
@@ -188,6 +190,12 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                       signInUser('rabbitfighter', 'j9B73301');
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
+                      );
+
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const PagePicsList(),
+                        ),
                       );
                     }
                   },

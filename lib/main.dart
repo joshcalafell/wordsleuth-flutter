@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login/tabs/tabs_auth.dart';
+import 'tabs/tabs_auth.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:word_sleuth/login/forms/form_login_account.dart';
 
-class PicListPage extends StatelessWidget {
-  const PicListPage({Key? key}) : super(key: key);
+class PagePicsList extends StatelessWidget {
+  const PagePicsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,24 +25,27 @@ class PicListPage extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PicDetailPage(heroTag: index)));
+                    builder: (context) =>
+                        PagePicsListDetail(pictureIndex: index)));
               },
             ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           tooltip: 'Sign Out',
           backgroundColor: Colors.deepPurple,
-          child: const Icon(Icons.question_answer)),
+          child: const Icon(Icons.rocket_launch)),
     );
   }
 }
 
-class PicDetailPage extends StatelessWidget {
-  final int heroTag;
-  const PicDetailPage({super.key, required this.heroTag});
+class PagePicsListDetail extends StatelessWidget {
+  final int pictureIndex;
+  const PagePicsListDetail({super.key, required this.pictureIndex});
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +58,8 @@ class PicDetailPage extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Center(
                 child: Hero(
-                  tag: heroTag,
-                  child: Image.network(_images[heroTag]),
+                  tag: pictureIndex,
+                  child: Image.network(_images[pictureIndex]),
                 ),
               ),
             ),
