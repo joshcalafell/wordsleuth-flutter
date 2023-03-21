@@ -18,6 +18,9 @@ class FormLoginAccount extends StatefulWidget {
 }
 
 class _FormLoginAccountState extends State<FormLoginAccount> {
+  String username = '';
+  String password = '';
+
   bool _isSignedIn = false;
 
   bool _passwordVisible = false;
@@ -60,15 +63,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
         _isSignedIn = false;
       });
     } on AuthException catch (e) {
-      safePrint(e.message);
-    }
-  }
-
-  Future<void> signOutCurrentUserGlobally() async {
-    try {
-      await Amplify.Auth.signOut(
-          options: const SignOutOptions(globalSignOut: true));
-    } on AmplifyException catch (e) {
       safePrint(e.message);
     }
   }
@@ -139,16 +133,17 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your username';
                           } else {
+                            username = value;
                             safePrint('Value $value');
                           }
                           return null;
                         },
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: 'Email',
-                            labelText: 'Email'),
+                            hintText: 'Username',
+                            labelText: 'Username'),
                         keyboardType: TextInputType.emailAddress)),
                 Padding(
                     padding: const EdgeInsets.symmetric(
@@ -158,6 +153,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
                         } else {
+                          password = value;
                           safePrint('Value $value');
                         }
                         return null;
@@ -189,7 +185,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                     if (_formKey.currentState!.validate()) {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
-                      signInUser('jcalafell23@gmail.com', 'j9B73301');
+                      signInUser(username, password);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
