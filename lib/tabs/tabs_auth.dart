@@ -47,11 +47,6 @@ class _TabsAuthState extends State<TabsAuth> {
   }
 
   // ignore: unused_element
-  _checkAuthStatus() async {
-    var loggedIn = await isUserSignedIn();
-    safePrint(loggedIn);
-    return loggedIn;
-  }
 
   @override
   Widget build(BuildContext context) {

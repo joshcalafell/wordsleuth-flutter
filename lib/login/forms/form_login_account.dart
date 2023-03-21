@@ -44,6 +44,9 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
             authFlowType: AuthenticationFlowType.customAuth),
       );
       safePrint(result.isSignedIn);
+      setState(() {
+        _isSignedIn = result.isSignedIn;
+      });
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -53,6 +56,9 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
     try {
       final result = await Amplify.Auth.signOut();
       safePrint(result);
+      setState(() {
+        _isSignedIn = false;
+      });
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -72,10 +78,32 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
     return result.isSignedIn;
   }
 
+/*   StreamSubscription<HubEvent> hubSubscription =
+      Amplify.Hub.listen([HubChannel.Auth], (hubEvent) {
+    switch (hubEvent.eventName) {
+      case 'SIGNED_IN':
+        safePrint('USER IS SIGNED IN');
+        break;
+      case 'SIGNED_OUT':
+        safePrint('USER IS SIGNED OUT');
+        break;
+      case 'SESSION_EXPIRED':
+        safePrint('SESSION HAS EXPIRED');
+        break;
+      case 'USER_DELETED':
+        safePrint('USER HAS BEEN DELETED');
+        break;
+      default:
+        safePrint(hubEvent.eventName);
+        break;
+    }
+  }); */
+
   @override
   Widget build(BuildContext context) {
-    return !_isSignedIn
-        ? Form(
+    if (!_isSignedIn) {
+      return SizedBox(
+        child: Form(
             key: _formKey,
             child: Column(children: <Widget>[
               Column(
@@ -120,31 +148,34 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             hintText: 'Email',
-                            labelText: 'Email'))),
+                            labelText: 'Email'),
+                        keyboardType: TextInputType.emailAddress)),
                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
                     child: TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your password';
-                          } else {
-                            safePrint('Value $value');
-                          }
-                          return null;
-                        },
-                        obscureText: _passwordVisible,
-                        decoration: InputDecoration(
-                            border: const OutlineInputBorder(),
-                            hintText: 'Password',
-                            labelText: 'Password',
-                            suffixIcon: IconButton(
-                              onPressed: _togglePasswordVisible,
-                              icon: Icon(_passwordVisible
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              // The validator receives the text that the user has entered.
-                            )))),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your password';
+                        } else {
+                          safePrint('Value $value');
+                        }
+                        return null;
+                      },
+                      obscureText: _passwordVisible,
+                      decoration: InputDecoration(
+                          border: const OutlineInputBorder(),
+                          hintText: 'Password',
+                          labelText: 'Password',
+                          suffixIcon: IconButton(
+                            onPressed: _togglePasswordVisible,
+                            icon: Icon(_passwordVisible
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            // The validator receives the text that the user has entered.
+                          )),
+                      keyboardType: TextInputType.visiblePassword,
+                    )),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
@@ -195,46 +226,48 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 ),
               ]),
-            ]))
-        : Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            ])),
+      );
+    } else {
+      return Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          ),
+          const Text('Logged In'),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          ),
+          MaterialButton(
+            minWidth: double.tryParse('340'),
+            height: 50,
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            onPressed: () {
+              // Validate returns true if the form is valid, or false otherwise.
+              signOutUser();
+              setState(() {
+                _isSignedIn = false;
+              });
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Signing Out...')),
+              );
+            },
+            color: Colors.deepPurple,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: const Text(
+              'Sign Out',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                color: Colors.white,
               ),
-              const Text('Logged In'),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              ),
-              MaterialButton(
-                minWidth: double.tryParse('340'),
-                height: 50,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-                onPressed: () {
-                  // Validate returns true if the form is valid, or false otherwise.
-                  signOutUser();
-                  setState(() {
-                    _isSignedIn = false;
-                  });
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Signing Out...')),
-                  );
-                },
-                color: Colors.deepPurple,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: const Text(
-                  'Sign Out',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          );
+            ),
+          ),
+        ],
+      );
+    }
   }
 }
