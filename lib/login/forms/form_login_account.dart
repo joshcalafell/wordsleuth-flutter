@@ -5,7 +5,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
-import '/pages/page_pics_list.dart';
+import 'package:word_sleuth/pages/page_pics_list.dart';
 
 class FormLoginAccount extends StatefulWidget {
   const FormLoginAccount({super.key, required this.title});
