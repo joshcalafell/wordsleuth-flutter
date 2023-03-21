@@ -33,12 +33,5 @@ export type AmplifyDependentResourcesAttributes = {
       Name: "string";
       Region: "string";
     };
-    wordsleuth5da081185da08118DefineAuthChallenge: {
-      Arn: "string";
-      LambdaExecutionRole: "string";
-      LambdaExecutionRoleArn: "string";
-      Name: "string";
-      Region: "string";
-    };
   };
 };
