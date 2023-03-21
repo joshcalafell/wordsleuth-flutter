@@ -101,8 +101,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
 
   @override
   Widget build(BuildContext context) {
-    hubSubscription.asFuture(_isSignedIn);
-
     return !_isSignedIn
         ? Form(
             key: _formKey,
