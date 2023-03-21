@@ -186,6 +186,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
                       signInUser(username, password);
+
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );

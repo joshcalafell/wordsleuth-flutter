@@ -15,6 +15,9 @@ class FormCreateAccount extends StatefulWidget {
 }
 
 class _FormCreateAccountState extends State<FormCreateAccount> {
+  String username = '';
+  String emailAddress = '';
+  String password = '';
   // ignore: unused_field
   bool _isSignUpComplete = false;
 
@@ -135,6 +138,7 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                                   if (value == null || value.isEmpty) {
                                     return 'Please choose a password';
                                   } else {
+                                    password = password;
                                     safePrint('Value $value');
                                   }
                                   return null;
@@ -159,6 +163,9 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please confirm your password';
+                                  } else if (password.toString() !=
+                                      value.toString()) {
+                                    return 'Passwords do not match';
                                   } else {
                                     safePrint('Value $value');
                                   }
@@ -191,6 +198,8 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                             if (_formKey.currentState!.validate()) {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
+                              signUpUser(emailAddress, username, '', password);
+
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
                                     content: Text('Processing Data')),

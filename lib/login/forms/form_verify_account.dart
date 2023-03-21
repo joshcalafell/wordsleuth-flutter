@@ -14,6 +14,9 @@ class FormVerifyAccount extends StatefulWidget {
 }
 
 class _FormVerifyAccountState extends State<FormVerifyAccount> {
+  String username = '';
+  String code = '';
+
   bool _isSignUpComplete = false;
 
   bool _passwordVerifyVisible = false;
@@ -24,18 +27,6 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
   @override
   initState() {
     super.initState();
-  }
-
-  void _toggleNewPasswordVisible() {
-    setState(() {
-      _passwordNewVisible = !_passwordNewVisible;
-    });
-  }
-
-  void _togglePasswordVerifyVisible() {
-    setState(() {
-      _passwordVerifyVisible = !_passwordVerifyVisible;
-    });
   }
 
   Future<void> confirmUser(String username, String confirmationCode) async {
@@ -88,14 +79,15 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                     child: TextFormField(
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            hintText: 'Email',
-                            labelText: 'Email'),
+                            hintText: 'Username',
+                            labelText: 'Username'),
                         keyboardType: TextInputType.emailAddress,
                         // The validator receives the text that the user has entered.
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your username';
                           } else {
+                            username = value;
                             safePrint('Value $value');
                           }
                           return null;
@@ -107,50 +99,20 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                       child: TextFormField(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please verify your password';
+                              return 'Please verify your 6 digit code';
                             } else {
+                              code = value;
                               safePrint('Value $value');
                             }
                             return null;
                           },
                           obscureText: !_passwordNewVisible,
                           keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                              border: const OutlineInputBorder(),
-                              hintText: 'Password',
-                              labelText: 'Password',
-                              suffixIcon: IconButton(
-                                onPressed: _toggleNewPasswordVisible,
-                                icon: Icon(_passwordNewVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                // The validator receives the text that the user has entered.
-                              )))),
-                  Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: TextFormField(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please verify your password';
-                            } else {
-                              safePrint('Value $value');
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.visiblePassword,
-                          obscureText: !_passwordVerifyVisible,
-                          decoration: InputDecoration(
-                              border: const OutlineInputBorder(),
-                              hintText: 'Password',
-                              labelText: 'Password',
-                              suffixIcon: IconButton(
-                                onPressed: _togglePasswordVerifyVisible,
-                                icon: Icon(_passwordVerifyVisible
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                // The validator receives the text that the user has entered.
-                              )))),
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'Code',
+                            labelText: 'Code',
+                          ))),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
@@ -168,7 +130,7 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                           const SnackBar(content: Text('Processing Data')),
                         );
 
-                        confirmUser('rabbitfighter', '123456');
+                        confirmUser(username, code);
                       }
                     },
                     color: Colors.deepPurple,
