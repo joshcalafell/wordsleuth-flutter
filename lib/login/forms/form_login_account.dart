@@ -44,9 +44,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
             authFlowType: AuthenticationFlowType.customAuth),
       );
       safePrint(result.isSignedIn);
-      setState(() {
-        _isSignedIn = result.isSignedIn;
-      });
     } on AuthException catch (e) {
       safePrint(e.message);
     }
@@ -56,9 +53,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
     try {
       final result = await Amplify.Auth.signOut();
       safePrint(result);
-      setState(() {
-        _isSignedIn = false;
-      });
     } on AuthException catch (e) {
       safePrint(e.message);
     }
