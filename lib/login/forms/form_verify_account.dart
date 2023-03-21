@@ -1,19 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:flutter/material.dart';
 
-class VerificationChallengeForm extends StatefulWidget {
-  const VerificationChallengeForm({super.key, required this.title});
+class FormVerifyAccount extends StatefulWidget {
+  const FormVerifyAccount({super.key, required this.title});
 
   // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
-  State<VerificationChallengeForm> createState() =>
-      _VerificationChallengeFormState();
+  State<FormVerifyAccount> createState() => _FormVerifyAccountState();
 }
 
-class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
+class _FormVerifyAccountState extends State<FormVerifyAccount> {
   bool _isSignUpComplete = false;
 
   bool _passwordVerifyVisible = false;
@@ -52,7 +50,7 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
 
   @override
   Widget build(BuildContext context) {
-    return _isSignUpComplete == true
+    return _isSignUpComplete
         ? Form(
             key: _formKey,
             child: Column(
@@ -102,24 +100,6 @@ class _VerificationChallengeFormState extends State<VerificationChallengeForm> {
                                   return null;
                                 }),
                           ),
-                          /*        Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: TextFormField(
-                      decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          hintText: 'Phone Number',
-                          labelText: 'Phone Number'),
-                      // The validator receives the text that the user has entered.
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your phone number';
-                        } else {
-                          safePrint('Value $value');
-                        }
-                        return null;
-                      }),
-                ), */
                           Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 10),

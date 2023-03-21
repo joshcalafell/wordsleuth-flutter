@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 // Do not forget to import the following for StreamSubscription
 import 'dart:async';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key, required this.title});
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:flutter/material.dart';
+
+class FormLoginAccount extends StatefulWidget {
+  const FormLoginAccount({super.key, required this.title});
 
   // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<FormLoginAccount> createState() => _FormLoginAccountState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _FormLoginAccountState extends State<FormLoginAccount> {
   bool _isSignedIn = false;
 
   bool _passwordVisible = false;
