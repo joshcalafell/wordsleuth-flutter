@@ -1,9 +1,24 @@
+import 'dart:async';
+
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
+
 import 'package:word_sleuth/login/forms/form_login_account.dart';
+// ignore: unused_import
+import 'package:word_sleuth/pages/page_pics_list.dart';
 
 class PagePicsList extends StatelessWidget {
   const PagePicsList({Key? key}) : super(key: key);
+
+  Future<void> signOutUser() async {
+    try {
+      final result = await Amplify.Auth.signOut();
+      safePrint(result);
+    } on AuthException catch (e) {
+      safePrint(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +50,16 @@ class PagePicsList extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.pop(context);
+            // Validate returns true if the form is valid, or false otherwise.
+            signOutUser().then((value) => Navigator.of(context).pop());
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Signing Out...')),
+            );
           },
           tooltip: 'Sign Out',
           backgroundColor: Colors.deepPurple,
-          child: const Icon(Icons.rocket_launch)),
+          child: const Icon(Icons.logout)),
     );
   }
 }

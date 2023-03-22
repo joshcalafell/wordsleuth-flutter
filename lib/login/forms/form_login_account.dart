@@ -21,9 +21,9 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
   String username = '';
   String password = '';
 
-  bool _isSignedIn = false;
+  bool isSignedIn = false;
 
-  bool _passwordVisible = false;
+  bool passwordVisible = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -34,7 +34,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
 
   void _togglePasswordVisible() {
     setState(() {
-      _passwordVisible = !_passwordVisible;
+      passwordVisible = !passwordVisible;
     });
   }
 
@@ -48,7 +48,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
       );
       safePrint(result.isSignedIn);
       setState(() {
-        _isSignedIn = result.isSignedIn;
+        isSignedIn = result.isSignedIn;
       });
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -60,7 +60,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
       final result = await Amplify.Auth.signOut();
       safePrint(result);
       setState(() {
-        _isSignedIn = false;
+        isSignedIn = false;
       });
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -72,7 +72,22 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
     return result.isSignedIn;
   }
 
-/*   StreamSubscription<HubEvent> hubSubscription =
+  refreshSignedInStatus() {
+    isUserSignedIn().then((loggedIn) {
+      safePrint('refreshing...');
+      setState(() {
+        isSignedIn = loggedIn;
+      });
+
+      if (isSignedIn) {
+        // Your navigation code
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const PagePicsList()));
+      }
+    });
+  }
+
+  StreamSubscription<HubEvent> hubSubscription =
       Amplify.Hub.listen([HubChannel.Auth], (hubEvent) {
     switch (hubEvent.eventName) {
       case 'SIGNED_IN':
@@ -91,13 +106,13 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
         safePrint(hubEvent.eventName);
         break;
     }
-  }); */
+  });
 
   @override
   Widget build(BuildContext context) {
-    if (!_isSignedIn) {
-      return SizedBox(
-        child: Form(
+    return Column(
+      children: [
+        Form(
             key: _formKey,
             child: Column(children: <Widget>[
               Column(
@@ -144,7 +159,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                             border: OutlineInputBorder(),
                             hintText: 'Username',
                             labelText: 'Username'),
-                        keyboardType: TextInputType.emailAddress)),
+                        keyboardType: TextInputType.text)),
                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 20),
@@ -158,14 +173,14 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                         }
                         return null;
                       },
-                      obscureText: _passwordVisible,
+                      obscureText: passwordVisible,
                       decoration: InputDecoration(
                           border: const OutlineInputBorder(),
                           hintText: 'Password',
                           labelText: 'Password',
                           suffixIcon: IconButton(
                             onPressed: _togglePasswordVisible,
-                            icon: Icon(_passwordVisible
+                            icon: Icon(passwordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off),
                             // The validator receives the text that the user has entered.
@@ -183,18 +198,13 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState!.validate()) {
+                      signInUser(username, password)
+                          .then((value) => refreshSignedInStatus());
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
-                      signInUser(username, password);
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
-                      );
-
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const PagePicsList(),
-                        ),
                       );
                     }
                   },
@@ -224,47 +234,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                 ),
               ]),
             ])),
-      );
-    } else {
-      return Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          ),
-          const Text('Logged In'),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          ),
-          MaterialButton(
-            minWidth: double.tryParse('340'),
-            height: 50,
-            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
-            onPressed: () {
-              // Validate returns true if the form is valid, or false otherwise.
-              signOutUser();
-              setState(() {
-                _isSignedIn = false;
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Signing Out...')),
-              );
-            },
-            color: Colors.deepPurple,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-            child: const Text(
-              'Sign Out',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-                color: Colors.white,
-              ),
-            ),
-          ),
-        ],
-      );
-    }
+      ],
+    );
   }
 }
