@@ -73,18 +73,15 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
   }
 
   refreshSignedInStatus() {
-    isUserSignedIn().then((loggedIn) {
-      safePrint('refreshing...');
-      setState(() {
-        isSignedIn = loggedIn;
-      });
+    if (isSignedIn) {
+      safePrint('refreshing... $isSignedIn');
 
       if (isSignedIn) {
         // Your navigation code
-        Navigator.of(context).push(
+        Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const PagePicsList()));
       }
-    });
+    }
   }
 
   StreamSubscription<HubEvent> hubSubscription =

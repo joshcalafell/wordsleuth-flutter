@@ -21,7 +21,7 @@
         },
         "wordsleuth1e407bba1e407bbaDefineAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-454b635178456662626a-build.zip"
+          "s3Key": "amplify-builds/wordsleuth1e407bba1e407bbaDefineAuthChallenge-46775468757350535751-build.zip"
         },
         "wordsleuth1e407bba1e407bbaVerifyAuthChallengeResponse": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
@@ -29,7 +29,7 @@
         },
         "wordsleuth5da081185da08118DefineAuthChallenge": {
           "deploymentBucketName": "amplify-wordsleuth-dev-74626-deployment",
-          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-41716c7757734e494259-build.zip"
+          "s3Key": "amplify-builds/wordsleuth5da081185da08118DefineAuthChallenge-78526353397754586254-build.zip"
         }
       },
       "auth": {
