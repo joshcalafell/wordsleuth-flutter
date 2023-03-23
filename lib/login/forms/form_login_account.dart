@@ -231,6 +231,15 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                 ),
               ]),
             ])),
+        FutureBuilder(
+            future: isUserSignedIn(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                return Text(snapshot.data.toString());
+              } else {
+                return const CircularProgressIndicator();
+              }
+            })
       ],
     );
   }
