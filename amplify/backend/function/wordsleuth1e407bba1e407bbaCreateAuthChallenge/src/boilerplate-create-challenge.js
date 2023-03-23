@@ -8,7 +8,7 @@ function sendChallengeCode(emailAddress, secretCode) {
 function createAuthChallenge(event) {
   if (event.request.challengeName === "CUSTOM_CHALLENGE") {
     // Generate a random code for the custom challenge
-    const challengeCode = "1234"; // digitGenerator.randomDigits(6).join("");
+    const challengeCode = digitGenerator.randomDigits(6).join("");
 
     // Send the custom challenge to the user
     sendChallengeCode(event.request.userAttributes.email, challengeCode);
@@ -16,7 +16,7 @@ function createAuthChallenge(event) {
     event.response.privateChallengeParameters = {};
     event.response.privateChallengeParameters.answer = challengeCode;
     event.response.publicChallengeParameters = {
-      hint: "Enter the secret code (1234)",
+      hint: "Enter the secret code",
     };
   }
 }
