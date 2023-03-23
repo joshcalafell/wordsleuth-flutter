@@ -28,13 +28,13 @@ class PagePicsList extends StatelessWidget {
         itemCount: _images.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(2.0),
             child: ListTile(
               title: Text('Tile $index'),
               leading: Hero(
                 tag: index,
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(4, 16, 4, 0),
+                  padding: const EdgeInsets.fromLTRB(2, 8, 2, 0),
                   child: Image.network(_images[index],
                       width: 100, fit: BoxFit.cover),
                 ),
