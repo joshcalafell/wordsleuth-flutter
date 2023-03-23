@@ -44,7 +44,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
         username: username,
         password: password,
         options: CognitoSignInOptions(
-            authFlowType: AuthenticationFlowType.customAuth),
+            authFlowType: AuthenticationFlowType.userSrpAuth),
       );
       safePrint(result.isSignedIn);
       setState(() {

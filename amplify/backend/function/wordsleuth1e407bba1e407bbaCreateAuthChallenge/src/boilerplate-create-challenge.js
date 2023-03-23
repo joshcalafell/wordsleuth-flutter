@@ -14,7 +14,7 @@ function createAuthChallenge(event) {
     sendChallengeCode(event.request.userAttributes.email, challengeCode);
 
     event.response.privateChallengeParameters = {};
-    event.response.privateChallengeParameters.answer = challengeCode;
+    event.response.privateChallengeParameters.answer = 1234;
     event.response.publicChallengeParameters = {
       hint: "Enter the secret code",
     };

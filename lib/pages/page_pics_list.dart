@@ -13,7 +13,7 @@ class PagePicsList extends StatelessWidget {
 
   Future<void> signOutUser() async {
     try {
-      final result = await Amplify.Auth.signOut();
+      final result = await Amplify.Auth.signOut().then((value) => null);
       safePrint(result);
     } on AuthException catch (e) {
       safePrint(e.message);
@@ -51,7 +51,7 @@ class PagePicsList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Validate returns true if the form is valid, or false otherwise.
-            signOutUser().then((value) => Navigator.of(context).pop());
+            signOutUser();
 
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('Signing Out...')),
