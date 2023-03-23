@@ -78,7 +78,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
 
       if (isSignedIn) {
         // Your navigation code
-        Navigator.of(context).pushReplacement(
+        Navigator.of(context).push(
             MaterialPageRoute(builder: (context) => const PagePicsList()));
       }
     }
@@ -170,14 +170,14 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                         }
                         return null;
                       },
-                      obscureText: passwordVisible,
+                      obscureText: !passwordVisible,
                       decoration: InputDecoration(
                           border: const OutlineInputBorder(),
                           hintText: 'Password',
                           labelText: 'Password',
                           suffixIcon: IconButton(
                             onPressed: _togglePasswordVisible,
-                            icon: Icon(passwordVisible
+                            icon: Icon(!passwordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off),
                             // The validator receives the text that the user has entered.
