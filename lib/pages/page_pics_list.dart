@@ -20,6 +20,8 @@ class PagePicsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Images List'),
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
               icon: const Icon(
@@ -41,14 +43,12 @@ class PagePicsList extends StatelessWidget {
                 );
               })
         ],
-        title: const Text('Images List'),
-        automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
         itemCount: _images.length,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(2.0),
+            padding: const EdgeInsets.all(2),
             child: ListTile(
               title: Text('Image ${index + 1}'),
               leading: Hero(
@@ -72,7 +72,7 @@ class PagePicsList extends StatelessWidget {
           onPressed: () {},
           tooltip: 'Sign Out',
           backgroundColor: Colors.deepPurple,
-          child: const Icon(Icons.chalet_outlined)),
+          child: const Icon(Icons.search)),
     );
   }
 }

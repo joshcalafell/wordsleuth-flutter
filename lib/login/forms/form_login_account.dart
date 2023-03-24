@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:word_sleuth/pages/page_pics_list.dart';
+import 'package:word_sleuth/pages/search_input.dart';
 
 class FormLoginAccount extends StatefulWidget {
   const FormLoginAccount({super.key, required this.title});
@@ -29,7 +29,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
   @override
   initState() {
     super.initState();
-    safePrint('initState()');
   }
 
   void _togglePasswordVisible() {
@@ -189,7 +188,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                               {
                                 // Your navigation code
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const PagePicsList()))
+                                    builder: (context) => const SearchInput()))
                               }
                             else
                               {safePrint('Not signed In...')}
@@ -207,7 +206,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                     borderRadius: BorderRadius.circular(5.0),
                   ),
                   child: const Text(
-                    'Submit',
+                    'Sign In',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
