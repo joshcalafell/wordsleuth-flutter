@@ -52,9 +52,6 @@ class _TabsAuthState extends State<TabsAuth> {
 
   @override
   Widget build(BuildContext context) {
-    // Test
-
-    // ...
     String signInText = 'Sign In';
     String signUpText = 'Create Account';
 
