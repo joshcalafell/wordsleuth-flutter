@@ -20,7 +20,28 @@ class PagePicsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pics List View"),
+        actions: <Widget>[
+          IconButton(
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // Validate returns true if the form is valid, or false otherwise.
+                signOutUser().then((value) => Navigator.of(context)
+                    .pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const TabsAuth(title: 'Word Sleuth')),
+                        (route) => false));
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                      content: Center(child: Text('Signing Out...'))),
+                );
+              })
+        ],
+        title: const Text('Images List'),
         automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
@@ -29,7 +50,7 @@ class PagePicsList extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(2.0),
             child: ListTile(
-              title: Text('Tile $index'),
+              title: Text('Image ${index + 1}'),
               leading: Hero(
                 tag: index,
                 child: Padding(
@@ -40,42 +61,32 @@ class PagePicsList extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        PagePicsListDetail(pictureIndex: index)));
+                    builder: (context) => PagePicsListDetail(
+                        pictureIndex: index, title: 'Image ${index + 1}')));
               },
             ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Validate returns true if the form is valid, or false otherwise.
-            signOutUser().then((value) => Navigator.of(context)
-                .pushAndRemoveUntil(
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const TabsAuth(title: 'Word Sleuth')),
-                    (route) => false));
-
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Center(child: Text('Signing Out...'))),
-            );
-          },
+          onPressed: () {},
           tooltip: 'Sign Out',
           backgroundColor: Colors.deepPurple,
-          child: const Icon(Icons.logout)),
+          child: const Icon(Icons.chalet_outlined)),
     );
   }
 }
 
 class PagePicsListDetail extends StatelessWidget {
   final int pictureIndex;
-  const PagePicsListDetail({super.key, required this.pictureIndex});
+  final String title;
+  const PagePicsListDetail(
+      {super.key, required this.pictureIndex, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Pics List View Detail")),
+      appBar: AppBar(title: Text(title)),
       body: Column(
         children: [
           Expanded(
