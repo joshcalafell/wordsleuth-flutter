@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:word_sleuth/login/forms/form_login_account.dart';
 // ignore: unused_import
 import 'package:word_sleuth/pages/page_pics_list.dart';
+import 'package:word_sleuth/tabs/tabs_auth.dart';
 
 class PagePicsList extends StatelessWidget {
   const PagePicsList({Key? key}) : super(key: key);
@@ -51,10 +52,15 @@ class PagePicsList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             // Validate returns true if the form is valid, or false otherwise.
-            signOutUser();
+            signOutUser().then((value) => Navigator.of(context)
+                .pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            const TabsAuth(title: 'Word Sleuth')),
+                    (route) => false));
 
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Signing Out...')),
+              const SnackBar(content: Center(child: Text('Signing Out...'))),
             );
           },
           tooltip: 'Sign Out',

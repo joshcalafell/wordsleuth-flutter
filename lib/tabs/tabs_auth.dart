@@ -21,7 +21,9 @@ class _TabsAuthState extends State<TabsAuth> {
   @override
   initState() {
     super.initState();
-    _configureAmplify();
+    if (!Amplify.isConfigured) {
+      _configureAmplify();
+    }
   }
 
   Future<void> _configureAmplify() async {

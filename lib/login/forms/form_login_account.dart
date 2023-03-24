@@ -30,6 +30,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
   @override
   initState() {
     super.initState();
+    safePrint('initState()');
   }
 
   void _togglePasswordVisible() {
@@ -46,7 +47,8 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
         options: CognitoSignInOptions(
             authFlowType: AuthenticationFlowType.userSrpAuth),
       );
-      safePrint(result.isSignedIn);
+      safePrint(
+          result.isSignedIn ? 'User is signed in' : 'User is not signed in');
       setState(() {
         isSignedIn = result.isSignedIn;
       });
@@ -58,7 +60,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
   Future<void> signOutUser() async {
     try {
       final result = await Amplify.Auth.signOut();
-      safePrint(result);
+      safePrint('Sign out result: $result');
       setState(() {
         isSignedIn = false;
       });
@@ -70,18 +72,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
   Future<bool> isUserSignedIn() async {
     final result = await Amplify.Auth.fetchAuthSession();
     return result.isSignedIn;
-  }
-
-  refreshSignedInStatus() {
-    if (isSignedIn) {
-      safePrint('refreshing... $isSignedIn');
-
-      if (isSignedIn) {
-        // Your navigation code
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => const PagePicsList()));
-      }
-    }
   }
 
   StreamSubscription<HubEvent> hubSubscription =
@@ -195,8 +185,16 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState!.validate()) {
-                      signInUser(username, password)
-                          .then((value) => refreshSignedInStatus());
+                      signInUser(username, password).then((value) => {
+                            if (isSignedIn)
+                              {
+                                // Your navigation code
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const PagePicsList()))
+                              }
+                            else
+                              {}
+                          });
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
 
@@ -231,15 +229,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                 ),
               ]),
             ])),
-        FutureBuilder(
-            future: isUserSignedIn(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Text(snapshot.data.toString());
-              } else {
-                return const CircularProgressIndicator();
-              }
-            })
       ],
     );
   }
