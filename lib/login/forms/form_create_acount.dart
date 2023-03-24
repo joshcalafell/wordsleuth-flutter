@@ -268,10 +268,6 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                        ),
                       ]),
                 ],
               ),

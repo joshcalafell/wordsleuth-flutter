@@ -121,9 +121,6 @@ class _FormForgotPasswordState extends State<FormForgotPassword> {
                     ),
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                ),
               ]),
             ],
           )

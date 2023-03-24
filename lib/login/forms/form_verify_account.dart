@@ -150,10 +150,6 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                             ),
                           ),
                         ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                        ),
                       ]),
                 ],
               )

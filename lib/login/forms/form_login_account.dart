@@ -222,9 +222,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                   'Forgot Password?',
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                ),
               ]),
             ])),
       ],
