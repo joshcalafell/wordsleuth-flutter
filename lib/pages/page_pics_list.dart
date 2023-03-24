@@ -19,7 +19,10 @@ class PagePicsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Pics List View")),
+      appBar: AppBar(
+        title: const Text("Pics List View"),
+        automaticallyImplyLeading: false,
+      ),
       body: ListView.builder(
         itemCount: _images.length,
         itemBuilder: (BuildContext context, int index) {
