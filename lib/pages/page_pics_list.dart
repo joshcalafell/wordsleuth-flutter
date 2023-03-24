@@ -1,13 +1,8 @@
 import 'dart:async';
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-
-import 'package:word_sleuth/login/forms/form_login_account.dart';
-// ignore: unused_import
-import 'package:word_sleuth/pages/page_pics_list.dart';
-import 'package:word_sleuth/tabs/tabs_auth.dart';
+import 'package:word_sleuth/login/tabs/tabs_auth.dart';
 
 class PagePicsList extends StatelessWidget {
   const PagePicsList({Key? key}) : super(key: key);
