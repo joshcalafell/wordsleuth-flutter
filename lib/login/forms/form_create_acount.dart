@@ -72,20 +72,6 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
     }
   }
 
-  Future<void> confirmUser(String username, String confirmationCode) async {
-    try {
-      final result = await Amplify.Auth.confirmSignUp(
-          username: username, confirmationCode: confirmationCode);
-      setState(() {
-        _isSignUpComplete = result.isSignUpComplete;
-      });
-      safePrint(result.isSignUpComplete);
-      safePrint(result);
-    } on AuthException catch (e) {
-      safePrint(e.message);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -255,6 +241,7 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                                                 const FormVerifyAccount(
                                                     title:
                                                         'Form Verify Account'))));
+
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
                                       content: Text('Processing Data')),

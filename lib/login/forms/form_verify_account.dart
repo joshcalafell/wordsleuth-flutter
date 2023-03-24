@@ -60,7 +60,7 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                             EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       ),
                       const Text(
-                        'Verify your account',
+                        'Confirm your account',
                         style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
@@ -102,7 +102,7 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                             child: TextFormField(
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
-                                    return 'Please enter your verification code';
+                                    return 'Please enter your confirmation code';
                                   } else {
                                     code = value;
                                     safePrint('Value $value');
@@ -112,8 +112,8 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                                 keyboardType: TextInputType.visiblePassword,
                                 decoration: const InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintText: 'Code',
-                                  labelText: 'Code',
+                                  hintText: 'Confirmation Code',
+                                  labelText: 'Confirmation Code',
                                 ))),
                         const Padding(
                           padding: EdgeInsets.symmetric(
