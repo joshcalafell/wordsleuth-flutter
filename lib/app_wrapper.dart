@@ -44,7 +44,7 @@ class _AppWrapperState extends State<AppWrapper> {
           appBar: EasySearchBar(
 
               // isFloating: true,
-              title: const Text('Search for Anagrams'),
+              title: const Text('Search Words and Names'),
               foregroundColor: Colors.white,
               backgroundColor: Colors.deepPurple,
               openOverlayOnSearch: true,
