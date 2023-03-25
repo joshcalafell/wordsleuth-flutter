@@ -162,7 +162,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                 keyboardType: TextInputType.visiblePassword,
               )),
           const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 4),
           ),
           MaterialButton(
             minWidth: double.tryParse('340'),
@@ -194,7 +194,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
               borderRadius: BorderRadius.circular(5.0),
             ),
             child: const Text(
-              'Sign In',
+              'Submit',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 16,

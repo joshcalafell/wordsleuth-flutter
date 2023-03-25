@@ -176,7 +176,7 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please confirm your password';
-                    } else if (password1.toString() != value.toString()) {
+                    } else if (password1 != value) {
                       return 'Passwords do not match';
                     } else {
                       password2 = value;
@@ -195,7 +195,6 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                         icon: Icon(!_passwordVerifyVisible
                             ? Icons.visibility
                             : Icons.visibility_off),
-                        // The validator receives the text that the user has entered.
                       )))),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -214,7 +213,7 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
                       .then((value) => Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) => const FormVerifyAccount(
-                                  title: 'Form Verify Account'))));
+                                  title: 'Word Sleuth'))));
 
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),

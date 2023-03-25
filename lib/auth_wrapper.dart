@@ -58,27 +58,23 @@ class _AuthWrapperState extends State<AuthWrapper> {
       home: DefaultTabController(
           length: 2,
           child: Scaffold(
-              appBar: AppBar(
-                title: Text(widget.title),
-                bottom: TabBar(
-                  tabs: [
-                    Tab(icon: Text(signInText)),
-                    Tab(icon: Text(signUpText)),
-                  ],
-                ),
-              ),
-              body: TabBarView(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  FormLoginAccount(title: signInText),
-                  FormCreateAccount(title: signUpText),
+            appBar: AppBar(
+              title: Text(widget.title),
+              bottom: TabBar(
+                tabs: [
+                  Tab(icon: Text(signInText)),
+                  Tab(icon: Text(signUpText)),
                 ],
               ),
-              floatingActionButton: FloatingActionButton(
-                  onPressed: () {},
-                  tooltip: '?',
-                  backgroundColor: Colors.deepPurple,
-                  child: const Icon(Icons.search)))),
+            ),
+            body: TabBarView(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                FormLoginAccount(title: signInText),
+                FormCreateAccount(title: signUpText),
+              ],
+            ),
+          )),
     );
   }
 }
