@@ -34,6 +34,9 @@
       },
       "auth": {
         "wordsleuth1e407bba1e407bba": {}
+      },
+      "api": {
+        "wordsleuth": {}
       }
     }
   }

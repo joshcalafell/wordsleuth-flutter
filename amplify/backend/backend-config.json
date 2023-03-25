@@ -1,4 +1,22 @@
 {
+  "api": {
+    "wordsleuth": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
   "auth": {
     "wordsleuth1e407bba1e407bba": {
       "SourceArn": "COGNITO_DEFAULT",

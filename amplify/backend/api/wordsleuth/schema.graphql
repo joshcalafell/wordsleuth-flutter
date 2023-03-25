@@ -1,0 +1,35 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type Word @model {
+  id: ID!
+  text: String
+  a_count: Int
+  b_count: Int
+  c_count: Int
+  d_count: Int
+  e_count: Int
+  f_count: Int
+  g_count: Int
+  h_count: Int
+  i_count: Int
+  j_count: Int
+  k_count: Int
+  l_count: Int
+  m_count: Int
+  n_count: Int
+  o_count: Int
+  p_count: Int
+  q_count: Int
+  r_count: Int
+  s_count: Int
+  t_count: Int
+  u_count: Int
+  v_count: Int
+  w_count: Int
+  x_count: Int
+  y_count: Int
+  z_count: Int
+}
