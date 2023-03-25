@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 class FormVerifyAccount extends StatefulWidget {
   const FormVerifyAccount({super.key, required this.title});
 
-  // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
@@ -17,7 +16,6 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
   String username = '';
   String code = '';
 
-  // ignore: unused_field
   bool _isSignUpComplete = false;
 
   final _formKey = GlobalKey<FormState>();

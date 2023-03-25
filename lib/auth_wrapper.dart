@@ -46,8 +46,6 @@ class _AuthWrapperState extends State<AuthWrapper> {
     return user;
   }
 
-  // ignore: unused_element
-
   @override
   Widget build(BuildContext context) {
     String signInText = 'Sign In';

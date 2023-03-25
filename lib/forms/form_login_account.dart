@@ -9,7 +9,6 @@ import 'package:word_sleuth/app_wrapper.dart';
 class FormLoginAccount extends StatefulWidget {
   const FormLoginAccount({super.key, required this.title});
 
-  // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override

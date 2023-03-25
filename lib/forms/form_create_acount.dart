@@ -8,7 +8,6 @@ import 'package:word_sleuth/forms/form_verify_account.dart';
 class FormCreateAccount extends StatefulWidget {
   const FormCreateAccount({super.key, required this.title});
 
-  // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
@@ -74,206 +73,174 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              Column(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      ),
-                      const Text(
-                        'Sign up for an account',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: TextFormField(
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Email',
-                                  labelText: 'Email'),
-                              keyboardType: TextInputType.emailAddress,
-                              // The validator receives the text that the user has entered.
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your email';
-                                } else {
-                                  emailAddress = value;
-                                  safePrint('Value $value');
-                                }
-                                return null;
-                              }),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: TextFormField(
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Username',
-                                  labelText: 'Username'),
-                              keyboardType: TextInputType.emailAddress,
-                              // The validator receives the text that the user has entered.
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your username';
-                                } else {
-                                  username = value;
-                                  safePrint('Value $value');
-                                }
-                                return null;
-                              }),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: TextFormField(
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Phone Number',
-                                  labelText: 'Phone Number'),
-                              keyboardType: TextInputType.phone,
-                              // The validator receives the text that the user has entered.
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your phoneNumber';
-                                } else {
-                                  // phoneNumber = value;
-                                  safePrint('Value $phoneNumber');
-                                }
-                                return null;
-                              }),
-                        ),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: TextFormField(
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please choose a password';
-                                  } else {
-                                    password1 = value;
-                                    safePrint('Value $value');
-                                  }
-                                  return null;
-                                },
-                                obscureText: !_passwordNewVisible,
-                                keyboardType: TextInputType.visiblePassword,
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    hintText: 'New Password',
-                                    labelText: 'New Password',
-                                    suffixIcon: IconButton(
-                                      onPressed: _toggleNewPasswordVisible,
-                                      icon: Icon(!_passwordNewVisible
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
-                                      // The validator receives the text that the user has entered.
-                                    )))),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: TextFormField(
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Please confirm your password';
-                                  } else if (password1.toString() !=
-                                      value.toString()) {
-                                    return 'Passwords do not match';
-                                  } else {
-                                    password2 = value;
-                                    safePrint('Value $value');
-                                  }
-                                  return null;
-                                },
-                                obscureText: !_passwordVerifyVisible,
-                                keyboardType: TextInputType.visiblePassword,
-                                decoration: InputDecoration(
-                                    border: const OutlineInputBorder(),
-                                    hintText: 'Confirm Password',
-                                    labelText: 'Confirm Password',
-                                    suffixIcon: IconButton(
-                                      onPressed: _togglePasswordVerifyVisible,
-                                      icon: Icon(!_passwordVerifyVisible
-                                          ? Icons.visibility
-                                          : Icons.visibility_off),
-                                      // The validator receives the text that the user has entered.
-                                    )))),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                        ),
-                        MaterialButton(
-                          minWidth: double.tryParse('340'),
-                          height: 50,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 10),
-                          onPressed: () {
-                            // Validate returns true if the form is valid, or false otherwise.
-                            if (_formKey.currentState!.validate()) {
-                              // If the form is valid, display a snackbar. In the real world,
-                              // you'd often call a server or save the information in a database.
-                              if (password1 == password2) {
-                                signUpUser(emailAddress, phoneNumber, username,
-                                        password2)
-                                    .then((value) => Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const FormVerifyAccount(
-                                                    title:
-                                                        'Form Verify Account'))));
-
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Processing Data')),
-                                );
-                              } else {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('Passwords do not match')),
-                                );
-                              }
-                            }
-                          },
-                          color: Colors.deepPurple,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5.0),
-                          ),
-                          child: const Text(
-                            'Create Account',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ]),
-                ],
-              ),
-            ],
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: <Widget>[
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           ),
-        ),
+          const Text(
+            'Sign up for an account',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              color: Colors.black,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextFormField(
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Email',
+                    labelText: 'Email'),
+                keyboardType: TextInputType.emailAddress,
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your email';
+                  } else {
+                    emailAddress = value;
+                    safePrint('Value $value');
+                  }
+                  return null;
+                }),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextFormField(
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Username',
+                    labelText: 'Username'),
+                keyboardType: TextInputType.emailAddress,
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your username';
+                  } else {
+                    username = value;
+                    safePrint('Value $value');
+                  }
+                  return null;
+                }),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: TextFormField(
+                decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Phone Number',
+                    labelText: 'Phone Number'),
+                keyboardType: TextInputType.phone,
+                // The validator receives the text that the user has entered.
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your phoneNumber';
+                  } else {
+                    // phoneNumber = value;
+                    safePrint('Value $phoneNumber');
+                  }
+                  return null;
+                }),
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please choose a password';
+                    } else {
+                      password1 = value;
+                      safePrint('Value $value');
+                    }
+                    return null;
+                  },
+                  obscureText: !_passwordNewVisible,
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      hintText: 'New Password',
+                      labelText: 'New Password',
+                      suffixIcon: IconButton(
+                        onPressed: _toggleNewPasswordVisible,
+                        icon: Icon(!_passwordNewVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        // The validator receives the text that the user has entered.
+                      )))),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please confirm your password';
+                    } else if (password1.toString() != value.toString()) {
+                      return 'Passwords do not match';
+                    } else {
+                      password2 = value;
+                      safePrint('Value $value');
+                    }
+                    return null;
+                  },
+                  obscureText: !_passwordVerifyVisible,
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      hintText: 'Confirm Password',
+                      labelText: 'Confirm Password',
+                      suffixIcon: IconButton(
+                        onPressed: _togglePasswordVerifyVisible,
+                        icon: Icon(!_passwordVerifyVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        // The validator receives the text that the user has entered.
+                      )))),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          ),
+          MaterialButton(
+            minWidth: double.tryParse('340'),
+            height: 50,
+            padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+            onPressed: () {
+              // Validate returns true if the form is valid, or false otherwise.
+              if (_formKey.currentState!.validate()) {
+                // If the form is valid, display a snackbar. In the real world,
+                // you'd often call a server or save the information in a database.
+                if (password1 == password2) {
+                  signUpUser(emailAddress, phoneNumber, username, password2)
+                      .then((value) => Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const FormVerifyAccount(
+                                  title: 'Form Verify Account'))));
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Processing Data')),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Passwords do not match')),
+                  );
+                }
+              }
+            },
+            color: Colors.deepPurple,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5.0),
+            ),
+            child: const Text(
+              'Create Account',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
