@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login/tabs/tabs_auth.dart';
+import 'auth_wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: TabsAuth(title: 'Word Sleuth'),
+      home: AuthWrapper(title: 'Word Sleuth'),
     );
   }
 }

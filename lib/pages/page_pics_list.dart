@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:word_sleuth/login/tabs/tabs_auth.dart';
+import 'package:word_sleuth/auth_wrapper.dart';
 
 class PagePicsList extends StatelessWidget {
   const PagePicsList({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class PagePicsList extends StatelessWidget {
                     .pushAndRemoveUntil(
                         MaterialPageRoute(
                             builder: (context) =>
-                                const TabsAuth(title: 'Word Sleuth')),
+                                const AuthWrapper(title: 'Word Sleuth')),
                         (route) => false));
 
                 ScaffoldMessenger.of(context).showSnackBar(

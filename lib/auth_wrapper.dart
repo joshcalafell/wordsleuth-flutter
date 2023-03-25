@@ -2,28 +2,26 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:word_sleuth/login/forms/form_create_acount.dart';
-import 'package:word_sleuth/login/forms/form_login_account.dart';
+import 'package:word_sleuth/forms/form_create_acount.dart';
+import 'package:word_sleuth/forms/form_login_account.dart';
 
 import '/config/amplifyconfiguration.dart';
 
-class TabsAuth extends StatefulWidget {
-  const TabsAuth({super.key, required this.title});
+class AuthWrapper extends StatefulWidget {
+  const AuthWrapper({super.key, required this.title});
 
   // Fields in a Widget subclass are always marked "final".
   final String title;
 
   @override
-  State<TabsAuth> createState() => _TabsAuthState();
+  State<AuthWrapper> createState() => _AuthWrapperState();
 }
 
-class _TabsAuthState extends State<TabsAuth> {
+class _AuthWrapperState extends State<AuthWrapper> {
   @override
   initState() {
     super.initState();
-    if (!Amplify.isConfigured) {
-      _configureAmplify();
-    }
+    _configureAmplify();
   }
 
   Future<void> _configureAmplify() async {
@@ -62,23 +60,27 @@ class _TabsAuthState extends State<TabsAuth> {
       home: DefaultTabController(
           length: 2,
           child: Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-              bottom: TabBar(
-                tabs: [
-                  Tab(icon: Text(signInText)),
-                  Tab(icon: Text(signUpText)),
+              appBar: AppBar(
+                title: Text(widget.title),
+                bottom: TabBar(
+                  tabs: [
+                    Tab(icon: Text(signInText)),
+                    Tab(icon: Text(signUpText)),
+                  ],
+                ),
+              ),
+              body: TabBarView(
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  FormLoginAccount(title: signInText),
+                  FormCreateAccount(title: signUpText),
                 ],
               ),
-            ),
-            body: TabBarView(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                FormLoginAccount(title: signInText),
-                FormCreateAccount(title: signUpText),
-              ],
-            ),
-          )),
+              floatingActionButton: FloatingActionButton(
+                  onPressed: () {},
+                  tooltip: '?',
+                  backgroundColor: Colors.deepPurple,
+                  child: const Icon(Icons.search)))),
     );
   }
 }

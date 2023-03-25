@@ -1,16 +1,16 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:word_sleuth/login/tabs/tabs_auth.dart';
+import 'package:word_sleuth/auth_wrapper.dart';
 
-class SearchInput extends StatefulWidget {
-  const SearchInput({Key? key}) : super(key: key);
+class AppWrapper extends StatefulWidget {
+  const AppWrapper({Key? key}) : super(key: key);
 
   @override
-  State<SearchInput> createState() => _SearchInputState();
+  State<AppWrapper> createState() => _AppWrapperState();
 }
 
-class _SearchInputState extends State<SearchInput> {
+class _AppWrapperState extends State<AppWrapper> {
   String searchValue = '';
   final List<String> _suggestions = [
     'Afganistan',
@@ -102,8 +102,8 @@ class _SearchInputState extends State<SearchInput> {
                         signOutUser().then((value) => Navigator.of(context)
                             .pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TabsAuth(title: 'Word Sleuth')),
+                                    builder: (context) => const AuthWrapper(
+                                        title: 'Word Sleuth')),
                                 (route) => false));
 
                         ScaffoldMessenger.of(context).showSnackBar(

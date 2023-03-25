@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:word_sleuth/pages/search_input.dart';
+import 'package:word_sleuth/app_wrapper.dart';
 
 class FormLoginAccount extends StatefulWidget {
   const FormLoginAccount({super.key, required this.title});
@@ -188,7 +188,7 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
                               {
                                 // Your navigation code
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const SearchInput()))
+                                    builder: (context) => const AppWrapper()))
                               }
                             else
                               {safePrint('Not signed In...')}
