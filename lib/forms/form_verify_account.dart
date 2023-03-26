@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:word_sleuth/auth_wrapper.dart';
 
 class FormVerifyAccount extends StatefulWidget {
-  const FormVerifyAccount({super.key, required this.title});
+  const FormVerifyAccount(
+      {super.key, required this.title, required this.username});
 
   // Fields in a Widget subclass are always marked "final".
   final String title;
+  final String username;
 
   @override
   State<FormVerifyAccount> createState() => _FormVerifyAccountState();
 }
 
 class _FormVerifyAccountState extends State<FormVerifyAccount> {
-  String username = '';
   String code = '';
 
   // ignore: unused_field
@@ -55,7 +56,7 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
                   const Text(
-                    'Confirm your account',
+                    'Check email for verification Code',
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
@@ -64,26 +65,6 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 10),
-                    child: TextFormField(
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: 'Username',
-                            labelText: 'Username'),
-                        keyboardType: TextInputType.text,
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your username';
-                          } else {
-                            username = value;
-                            safePrint('Value $value');
-                          }
-                          return null;
-                        }),
                   ),
                   Padding(
                       padding: const EdgeInsets.symmetric(
@@ -115,7 +96,7 @@ class _FormVerifyAccountState extends State<FormVerifyAccount> {
                       onPressed: () {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
-                          confirmUser(username, code).then((value) =>
+                          confirmUser(widget.username, code).then((value) =>
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
                                       builder: (context) => const AuthWrapper(

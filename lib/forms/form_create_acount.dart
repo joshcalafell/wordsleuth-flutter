@@ -112,8 +112,8 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
             child: TextFormField(
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    hintText: 'Username',
-                    labelText: 'Username'),
+                    hintText: 'username',
+                    labelText: 'username'),
                 keyboardType: TextInputType.emailAddress,
                 // The validator receives the text that the user has entered.
                 validator: (value) {
@@ -206,15 +206,15 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
             onPressed: () {
               // Validate returns true if the form is valid, or false otherwise.
               if (_formKey.currentState!.validate()) {
-                // If the form is valid, display a snackbar. In the real world,
-                // you'd often call a server or save the information in a database.
                 if (password1 == password2) {
                   signUpUser(emailAddress, phoneNumber, username, password2)
                       .then((value) => Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => const FormVerifyAccount(
-                                  title: 'Word Sleuth'))));
+                              builder: (context) => FormVerifyAccount(
+                                  title: 'Word Sleuth', username: username))));
 
+                  // If the form is valid, display a snackbar. In the real world,
+                  // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Processing Data')),
                   );
