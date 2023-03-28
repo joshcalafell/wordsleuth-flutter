@@ -6,6 +6,7 @@ input AMPLIFY {
 type Word @model {
   id: ID!
   text: String
+  sorted: String
   a_count: Int
   b_count: Int
   c_count: Int
