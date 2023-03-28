@@ -25,11 +25,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
 
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  initState() {
-    super.initState();
-  }
-
   void _togglePasswordVisible() {
     setState(() {
       passwordVisible = !passwordVisible;
@@ -70,27 +65,6 @@ class _FormLoginAccountState extends State<FormLoginAccount> {
     final result = await Amplify.Auth.fetchAuthSession();
     return result.isSignedIn;
   }
-
-  StreamSubscription<HubEvent> hubSubscription =
-      Amplify.Hub.listen([HubChannel.Auth], (hubEvent) {
-    switch (hubEvent.eventName) {
-      case 'SIGNED_IN':
-        safePrint('USER IS SIGNED IN');
-        break;
-      case 'SIGNED_OUT':
-        safePrint('USER IS SIGNED OUT');
-        break;
-      case 'SESSION_EXPIRED':
-        safePrint('SESSION HAS EXPIRED');
-        break;
-      case 'USER_DELETED':
-        safePrint('USER HAS BEEN DELETED');
-        break;
-      default:
-        safePrint(hubEvent.eventName);
-        break;
-    }
-  });
 
   @override
   Widget build(BuildContext context) {

@@ -21,19 +21,6 @@ class _AuthWrapperState extends State<AuthWrapper> {
   @override
   initState() {
     super.initState();
-    _configureAmplify();
-  }
-
-  Future<void> _configureAmplify() async {
-    final authPlugin = AmplifyAuthCognito();
-    await Amplify.addPlugin(authPlugin);
-
-    try {
-      await Amplify.configure(amplifyconfig);
-    } on AmplifyAlreadyConfiguredException {
-      safePrint(
-          "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
-    }
   }
 
   Future<bool> isUserSignedIn() async {
