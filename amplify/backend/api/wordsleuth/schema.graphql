@@ -3,10 +3,7 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
-type Word @model {
-  id: ID!
-  text: String
-  sorted: String
+type CharCounts @model {
   a_count: Int
   b_count: Int
   c_count: Int
@@ -33,4 +30,10 @@ type Word @model {
   x_count: Int
   y_count: Int
   z_count: Int
+}
+
+type Word @model {
+  id: ID!
+  text: String
+  char_counts: CharCounts
 }
