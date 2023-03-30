@@ -3,6 +3,9 @@ import 'package:easy_search_bar/easy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:word_sleuth/auth_wrapper.dart';
 
+import 'package:amplify_api/amplify_api.dart';
+import 'package:word_sleuth/models/ModelProvider.dart';
+
 class AppWrapper extends StatefulWidget {
   const AppWrapper({Key? key}) : super(key: key);
 
@@ -11,6 +14,38 @@ class AppWrapper extends StatefulWidget {
 }
 
 class _AppWrapperState extends State<AppWrapper> {
+  String name = '';
+  String description = '';
+
+  updateName(String value) {
+    setState(() {
+      name = value;
+    });
+  }
+
+  updateDescription(String value) {
+    setState(() {
+      description = value;
+    });
+  }
+
+  Future<void> createTodo() async {
+    try {
+      final todo = Todo(name: 'my first todo', description: 'todo description');
+      final request = ModelMutations.create(todo);
+      final response = await Amplify.API.mutate(request: request).response;
+
+      final createdTodo = response.data;
+      if (createdTodo == null) {
+        safePrint('errors: ${response.errors}');
+        return;
+      }
+      safePrint('Mutation result: ${createdTodo.name}');
+    } on ApiException catch (e) {
+      safePrint('Mutation failed: $e');
+    }
+  }
+
   String searchValue = '';
   final List<String> _suggestions = [
     'Afganistan',
@@ -126,11 +161,51 @@ class _AppWrapperState extends State<AppWrapper> {
                   ],
                 ),
               ])),
-          body: Center(
-              child: Text(
-            'Value: $searchValue',
-            style: const TextStyle(fontSize: 24),
-          ))),
+          body: Column(
+            children: [
+              Center(
+                  child: Text(
+                'Value: $searchValue',
+                style: const TextStyle(fontSize: 24),
+              )),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              ),
+              // ignore: prefer_const_constructors
+              Center(
+                  child: const Text(
+                'Example create Todo',
+                style: TextStyle(fontSize: 24),
+              )),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: TextFormField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Name',
+                        labelText: 'Name'),
+                    keyboardType: TextInputType.text,
+                    // The validator receives the text that the user has entered.
+                    onChanged: ((value) => updateName(value))),
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: TextFormField(
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: 'Description',
+                        labelText: 'Description'),
+                    keyboardType: TextInputType.text,
+                    // The validator receives the text that the user has entered.
+                    onChanged: ((value) => updateDescription(value))),
+              ),
+            ],
+          )),
     );
   }
 }

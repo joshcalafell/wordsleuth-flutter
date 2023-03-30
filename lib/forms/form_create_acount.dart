@@ -29,11 +29,6 @@ class _FormCreateAccountState extends State<FormCreateAccount> {
 
   final _formKey = GlobalKey<FormState>();
 
-  @override
-  initState() {
-    super.initState();
-  }
-
   void _toggleNewPasswordVisible() {
     setState(() {
       _passwordNewVisible = !_passwordNewVisible;

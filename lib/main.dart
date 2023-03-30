@@ -6,15 +6,28 @@ import 'package:flutter/material.dart';
 import 'package:word_sleuth/amplifyconfiguration.dart';
 import 'auth_wrapper.dart';
 
+import 'package:amplify_api/amplify_api.dart';
+import 'package:word_sleuth/models/ModelProvider.dart';
+
 void main() {
   runApp(const MyApp());
+  _configureAmplifyAuth();
+  _configureAmplifyAPI();
+}
 
-  if (!Amplify.isConfigured) {
-    _configureAmplify();
+Future<void> _configureAmplifyAPI() async {
+  final api = AmplifyAPI(modelProvider: ModelProvider.instance);
+  await Amplify.addPlugin(api);
+
+  try {
+    await Amplify.configure(amplifyconfig);
+  } on AmplifyAlreadyConfiguredException {
+    safePrint(
+        'Tried to reconfigure Amplify; this can occur when your app restarts on Android.');
   }
 }
 
-Future<void> _configureAmplify() async {
+Future<void> _configureAmplifyAuth() async {
   final authPlugin = AmplifyAuthCognito();
   await Amplify.addPlugin(authPlugin);
 
