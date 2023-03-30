@@ -11,23 +11,13 @@ import 'package:word_sleuth/models/ModelProvider.dart';
 
 void main() {
   runApp(const MyApp());
-  _configureAmplifyAuth();
-  _configureAmplifyAPI();
+  _configureAmplify();
 }
 
-Future<void> _configureAmplifyAPI() async {
+Future<void> _configureAmplify() async {
   final api = AmplifyAPI(modelProvider: ModelProvider.instance);
   await Amplify.addPlugin(api);
 
-  try {
-    await Amplify.configure(amplifyconfig);
-  } on AmplifyAlreadyConfiguredException {
-    safePrint(
-        'Tried to reconfigure Amplify; this can occur when your app restarts on Android.');
-  }
-}
-
-Future<void> _configureAmplifyAuth() async {
   final authPlugin = AmplifyAuthCognito();
   await Amplify.addPlugin(authPlugin);
 
@@ -35,7 +25,7 @@ Future<void> _configureAmplifyAuth() async {
     await Amplify.configure(amplifyconfig);
   } on AmplifyAlreadyConfiguredException {
     safePrint(
-        "Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
+        'Tried to reconfigure Amplify; this can occur when your app restarts on Android.');
   }
 }
 
