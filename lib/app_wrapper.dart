@@ -48,6 +48,70 @@ class _AppWrapperState extends State<AppWrapper> {
     }
   }
 
+  Future<void> updateTodo(Todo originalTodo) async {
+    final todoWithNewName = originalTodo.copyWith(name: 'new name');
+
+    final request = ModelMutations.update(todoWithNewName);
+    final response = await Amplify.API.mutate(request: request).response;
+    safePrint('Response: $response');
+  }
+
+  Future<void> deleteTodo(Todo todoToDelete) async {
+    final request = ModelMutations.delete(todoToDelete);
+    final response = await Amplify.API.mutate(request: request).response;
+    safePrint('Response: $response');
+  }
+
+  Future<Todo?> queryItem(Todo queriedTodo) async {
+    try {
+      final request = ModelQueries.get(Todo.classType, queriedTodo.id);
+      final response = await Amplify.API.query(request: request).response;
+      final todo = response.data;
+      if (todo == null) {
+        safePrint('errors: ${response.errors}');
+      }
+      return todo;
+    } on ApiException catch (e) {
+      safePrint('Query failed: $e');
+      return null;
+    }
+  }
+
+  Future<List<Todo?>> queryListItems() async {
+    try {
+      final request = ModelQueries.list(Todo.classType);
+      final response = await Amplify.API.query(request: request).response;
+
+      final todos = response.data?.items;
+      if (todos == null) {
+        safePrint('errors: ${response.errors}');
+        return <Todo?>[];
+      }
+      return todos;
+    } on ApiException catch (e) {
+      safePrint('Query failed: $e');
+    }
+    return <Todo?>[];
+  }
+
+  static const limit = 100;
+
+  Future<List<Todo?>> queryPaginatedListItems() async {
+    final firstRequest = ModelQueries.list<Todo>(Todo.classType, limit: limit);
+    final firstResult = await Amplify.API.query(request: firstRequest).response;
+    final firstPageData = firstResult.data;
+
+    // Indicates there are > 100 todos and you can get the request for the next set.
+    if (firstPageData?.hasNextResult ?? false) {
+      final secondRequest = firstPageData!.requestForNextResult;
+      final secondResult =
+          await Amplify.API.query(request: secondRequest!).response;
+      return secondResult.data?.items ?? <Todo?>[];
+    } else {
+      return firstPageData?.items ?? <Todo?>[];
+    }
+  }
+
   String searchValue = '';
   final List<String> _suggestions = [
     'Afganistan',

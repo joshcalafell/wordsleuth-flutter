@@ -15,12 +15,10 @@ void main() {
 }
 
 Future<void> _configureAmplify() async {
-  final api = AmplifyAPI(modelProvider: ModelProvider.instance);
-  await Amplify.addPlugin(api);
-
-  final authPlugin = AmplifyAuthCognito();
-  await Amplify.addPlugin(authPlugin);
-
+  await Amplify.addPlugins([
+    AmplifyAuthCognito(),
+    AmplifyAPI(modelProvider: ModelProvider.instance)
+  ]);
   try {
     await Amplify.configure(amplifyconfig);
   } on AmplifyAlreadyConfiguredException {
