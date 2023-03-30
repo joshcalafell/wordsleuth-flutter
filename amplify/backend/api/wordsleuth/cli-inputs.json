@@ -4,8 +4,16 @@
     "apiName": "wordsleuth",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "mode": "AWS_IAM"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2024-03-29T14:42:57.554Z",
+        "keyDescription": "WordSleuth API Key"
+      }
+    ]
   }
 }
